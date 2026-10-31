@@ -1,0 +1,1802 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<title>Анти-ИИ Квен Академия | Русский язык • 6 класс • PRO</title>
+<meta name="description" content="Профессиональный тренажёр для тестирования иностранных граждан по русскому языку при поступлении в 6 класс." />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<style>
+  * { box-sizing: border-box; }
+  :root, [data-theme="dark"] {
+    --bg: #1a0505; --bg-grad1: rgba(239, 68, 68, 0.2); --bg-grad2: rgba(220, 38, 38, 0.15);
+    --card: rgba(40, 10, 10, 0.85); --card-soft: rgba(239, 68, 68, 0.08);
+    --border: rgba(239, 68, 68, 0.3); --border-strong: rgba(239, 68, 68, 0.6);
+    --text: #fee2e2; --text-soft: #fecaca; --muted: #fca5a5;
+    --accent: #ef4444; --accent2: #dc2626; --accent-text: #450a0a;
+    --light-red: rgba(239, 68, 68, 0.15); --red: #ef4444; --orange: #f59e0b;
+    --green: #10b981; --green-light: rgba(16, 185, 129, 0.15); --green-border: rgba(16, 185, 129, 0.4);
+    --blue: #3b82f6; --blue-light: rgba(59, 130, 246, 0.15);
+    --shadow: 0 16px 40px rgba(0, 0, 0, 0.4); --header-bg: rgba(26, 5, 5, 0.95);
+  }
+  [data-theme="light"] {
+    --bg: #fef2f2; --bg-grad1: rgba(239, 68, 68, 0.1); --bg-grad2: rgba(220, 38, 38, 0.05);
+    --card: #ffffff; --card-soft: #fff1f2; --border: #fecaca; --border-strong: #ef4444;
+    --text: #7f1d1d; --text-soft: #991b1b; --muted: #b91c1c;
+    --accent: #dc2626; --accent2: #b91c1c; --accent-text: #ffffff;
+    --light-red: #fee2e2; --red: #dc2626; --orange: #d97706;
+    --green: #059669; --green-light: #dcfce7; --green-border: #bbf7d0;
+    --blue: #2563eb; --blue-light: #dbeafe;
+    --shadow: 0 4px 12px rgba(220, 38, 38, 0.1); --header-bg: rgba(255, 255, 255, 0.95);
+  }
+  body { margin: 0; font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    background: radial-gradient(circle at top left,var(--bg-grad1),transparent 30%),
+                radial-gradient(circle at top right,var(--bg-grad2),transparent 28%),var(--bg);
+    color: var(--text); line-height: 1.55; min-height: 100vh; transition: background-color 0.3s, color 0.3s; }
+  .container { width: min(1200px, 94%); margin: 0 auto; }
+  header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(14px); background: var(--header-bg); border-bottom: 1px solid var(--border); }
+  .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 0; flex-wrap: wrap; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-logo { width: 44px; height: 44px; border-radius: 14px; object-fit: cover; background: var(--light-red); border: 1px solid var(--border-strong); flex: 0 0 auto; }
+  .brand strong { display: block; font-size: 15px; line-height: 1.2; }
+  .brand small { color: var(--muted); font-size: 11px; }
+  nav { display: flex; gap: 14px; flex-wrap: wrap; }
+  nav a { color: var(--text-soft); text-decoration: none; font-weight: 700; font-size: 13px; transition: color 0.2s; }
+  nav a:hover { color: var(--accent); }
+  .top-controls { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-left: auto; }
+  .icon-btn { display: inline-flex; align-items: center; gap: 5px; border: 1px solid var(--border-strong); background: var(--light-red); color: var(--muted); border-radius: 999px; padding: 7px 11px; font-weight: 800; cursor: pointer; font-size: 12px; transition: all .2s; }
+  .icon-btn:hover { background: var(--card-soft); color: var(--accent); transform: translateY(-1px); }
+  .lang-option { opacity: .6; cursor: pointer; }
+  .lang-option.active { opacity: 1; color: var(--accent); }
+  .timer-widget { display: flex; align-items: center; gap: 5px; background: var(--light-red); border: 1px solid var(--border-strong); border-radius: 12px; padding: 5px 7px; }
+  #timerDisplay { font-variant-numeric: tabular-nums; font-weight: 900; min-width: 80px; text-align: center; font-size: 13px; }
+  .timer-btn { border: 0; background: var(--card-soft); color: var(--text); border-radius: 9px; padding: 5px 8px; cursor: pointer; font-size: 13px; }
+  .timer-btn:hover { background: var(--light-red); }
+  .timer-widget.warning #timerDisplay { color: var(--orange); }
+  .timer-widget.danger #timerDisplay { color: var(--red); animation: pulse 1s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+  .variant-bar { background: var(--card-soft); border-bottom: 1px solid var(--border); padding: 10px 0; position: sticky; top: 66px; z-index: 45; backdrop-filter: blur(10px); }
+  .variant-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .variant-label { font-size: 13px; font-weight: 800; color: var(--muted); }
+  .variant-btn { padding: 8px 14px; border-radius: 10px; border: 1px solid var(--border-strong); background: var(--light-red); color: var(--text); cursor: pointer; font-size: 13px; font-weight: 800; transition: all .2s; }
+  .variant-btn:hover { background: var(--card-soft); transform: translateY(-1px); }
+  .variant-btn.active { background: linear-gradient(135deg,var(--accent2),var(--accent)); color: var(--accent-text); border-color: transparent; }
+  .mode-toggle { display: flex; gap: 4px; margin-left: auto; background: var(--card-soft); border: 1px solid var(--border); border-radius: 10px; padding: 3px; }
+  .mode-btn { padding: 6px 12px; border-radius: 8px; border: 0; background: transparent; color: var(--text-soft); cursor: pointer; font-size: 12px; font-weight: 800; transition: all .2s; }
+  .mode-btn.active { background: var(--accent); color: var(--accent-text); }
+  .hero { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 24px; padding: 40px 0 24px; align-items: start; }
+  .badge { display: inline-flex; align-items: center; padding: 7px 12px; border-radius: 999px; background: var(--light-red); border: 1px solid var(--border-strong); color: var(--accent); font-size: 12px; font-weight: 700; }
+  h1 { font-size: clamp(28px, 4.2vw, 46px); line-height: 1.05; margin: 14px 0; }
+  h1 .accent { color: var(--accent); }
+  .lead { color: var(--text-soft); max-width: 72ch; font-size: 16px; }
+  .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+  .btn { border: 0; border-radius: 13px; padding: 13px 18px; font-weight: 850; cursor: pointer; background: linear-gradient(135deg,var(--accent2),var(--accent)); color: var(--accent-text); box-shadow: 0 12px 30px rgba(239,68,68,.25); font-size: 14px; transition: all .2s; }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(239,68,68,.3); }
+  .btn:active { transform: translateY(0); }
+  .btn.secondary { background: var(--light-red); border: 1px solid var(--border-strong); color: var(--text); box-shadow: none; }
+  .btn.small { padding: 9px 13px; font-size: 13px; border-radius: 11px; }
+  .btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+  .panel { background: var(--card); border: 1px solid var(--border-strong); border-radius: 22px; padding: 20px; box-shadow: var(--shadow); }
+  .panel h3 { margin: 0 0 14px; font-size: 18px; }
+  .metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin: 14px 0; }
+  .metric { background: var(--light-red); border-radius: 14px; padding: 12px; border: 1px solid var(--border); min-height: 76px; }
+  .metric strong { display: block; font-size: 20px; margin-bottom: 3px; font-variant-numeric: tabular-nums; }
+  .metric span { color: var(--muted); font-size: 11px; }
+  .metric.blue { background: var(--blue-light); border-color: var(--blue); }
+  .metric.green { background: var(--green-light); border-color: var(--green-border); }
+  progress { width: 100%; height: 10px; border-radius: 999px; overflow: hidden; appearance: none; background: var(--light-red); border: none; margin-top: 10px; }
+  progress::-webkit-progress-bar { background: var(--light-red); border-radius: 999px; }
+  progress::-webkit-progress-value { background: linear-gradient(90deg,var(--accent2),var(--accent)); border-radius: 999px; transition: width .4s; }
+  .note { color: var(--muted); font-size: 12px; margin-top: 10px; }
+  section { padding: 26px 0; scroll-margin-top: 130px; }
+  .section-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+  h2 { font-size: clamp(22px,2.8vw,32px); margin: 0; line-height: 1.15; }
+  .sub { color: var(--muted); margin: 5px 0 0; font-size: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(245px,1fr)); gap: 14px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 18px; box-shadow: var(--shadow); transition: all .2s; }
+  .card:hover { transform: translateY(-2px); }
+  .card h3 { margin: 0 0 8px; font-size: 18px; }
+  .card p { color: var(--text-soft); margin: 0 0 14px; font-size: 14px; }
+  .warn-card { border-color: rgba(245,158,11,.4); } .danger-card { border-color: rgba(239,68,68,.4); } .success-card { border-color: var(--green-border); }
+  .tag { display: inline-block; padding: 5px 10px; border-radius: 999px; font-size: 11px; font-weight: 850; margin-bottom: 8px; background: var(--light-red); border: 1px solid var(--border-strong); color: var(--accent); }
+  .tag.red { background: rgba(239,68,68,.14); border-color: rgba(239,68,68,.4); color: var(--red); }
+  .tag.green { background: var(--green-light); border-color: var(--green-border); color: var(--green); }
+  .tag.orange { background: rgba(245,158,11,.14); border-color: rgba(245,158,11,.4); color: var(--orange); }
+  .tag.blue { background: var(--blue-light); border-color: var(--blue); color: var(--blue); }
+  .mini-list { margin: 0; padding-left: 18px; color: var(--text-soft); font-size: 13px; }
+  .mini-list li { margin: 6px 0; }
+  .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; padding: 12px; background: var(--card-soft); border: 1px solid var(--border); border-radius: 14px; align-items: center; }
+  .filter-bar > span { color: var(--muted); font-size: 12px; font-weight: 700; margin-right: 4px; }
+  .filter-btn { padding: 7px 12px; border-radius: 9px; border: 1px solid var(--border-strong); background: var(--light-red); color: var(--text); cursor: pointer; font-size: 12px; font-weight: 700; transition: all .2s; }
+  .filter-btn:hover { background: var(--card-soft); }
+  .filter-btn.active { background: linear-gradient(135deg,var(--accent2),var(--accent)); border-color: transparent; color: var(--accent-text); }
+  .question-block { background: var(--card); border: 1px solid var(--border); border-radius: 22px; padding: 22px; margin-bottom: 20px; box-shadow: var(--shadow); animation: slideIn .3s; }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .q-number { display: inline-block; padding: 5px 11px; border-radius: 999px; background: var(--light-red); border: 1px solid var(--border-strong); color: var(--accent); font-size: 12px; font-weight: 850; margin-bottom: 12px; }
+  .q-part { margin-bottom: 16px; }
+  .q-part-label, .q-trainer-label { display: inline-block; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: .5px; color: var(--accent); margin-bottom: 6px; }
+  .q-text { font-size: 15px; font-weight: 700; margin: 0; line-height: 1.55; white-space: pre-wrap; }
+  .q-info { background: var(--light-red); border-left: 4px solid var(--accent); border-radius: 0 12px 12px 0; padding: 14px 16px; margin: 16px 0; color: var(--text-soft); font-size: 14px; line-height: 1.55; white-space: pre-wrap; }
+  .options { display: grid; gap: 8px; }
+  .option { text-align: left; width: 100%; background: var(--card-soft); border: 1px solid var(--border); color: var(--text); border-radius: 12px; padding: 13px 15px; cursor: pointer; font-size: 14px; transition: all .15s; }
+  .option:hover:not(:disabled) { background: var(--light-red); border-color: var(--border-strong); transform: translateX(3px); }
+  .option.correct { background: rgba(16,185,129,.18); border-color: var(--green); }
+  .option.wrong { background: rgba(239,68,68,.18); border-color: var(--red); }
+  .option:disabled { cursor: default; }
+  .match-input-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 12px; }
+  .match-input-row input { padding: 11px 15px; border-radius: 11px; border: 1px solid var(--border-strong); background: var(--card-soft); color: var(--text); font-size: 15px; font-weight: 700; font-family: inherit; width: 300px; text-align: center; letter-spacing: 1px; transition: all .2s; }
+  .match-input-row input:focus { outline: none; border-color: var(--accent); background: var(--light-red); box-shadow: 0 0 0 3px var(--light-red); }
+  .writing-area { margin-top: 12px; }
+  .writing-area textarea { width: 100%; padding: 13px 15px; border-radius: 11px; border: 1px solid var(--border-strong); background: var(--card-soft); color: var(--text); font-size: 14px; font-family: inherit; resize: vertical; min-height: 150px; line-height: 1.6; transition: all .2s; }
+  .writing-area textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--light-red); }
+  .word-count { font-size: 12px; color: var(--muted); margin-top: 6px; font-weight: 700; }
+  .word-count.ok { color: var(--green); }
+  .result-block { margin-top: 12px; padding: 13px 15px; border-radius: 12px; animation: slideIn .3s; }
+  .result-block.correct { background: var(--light-red); border: 1px solid var(--border-strong); }
+  .result-block.wrong { background: rgba(239,68,68,.1); border: 1px solid rgba(239,68,68,.4); }
+  .verdict { font-size: 16px; font-weight: 900; margin-bottom: 6px; }
+  .verdict.correct { color: var(--green); } .verdict.wrong { color: var(--red); }
+  .result-row { margin: 5px 0; color: var(--text-soft); font-size: 14px; }
+  .result-row strong { color: var(--text); }
+  .source-row { margin-top: 5px; color: var(--muted); font-size: 12px; }
+  .summary { background: var(--light-red); border: 1px solid var(--border-strong); border-radius: 22px; padding: 22px; text-align: center; margin-top: 22px; animation: slideIn .3s; }
+  .summary .score { font-size: 44px; font-weight: 950; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .reset-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; justify-content: flex-end; }
+  .checklist { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  .check-item { display: flex; gap: 10px; align-items: flex-start; background: var(--card-soft); border: 1px solid var(--border); border-radius: 14px; padding: 13px; transition: all .2s; }
+  .check-item input { width: 19px; height: 19px; margin-top: 3px; accent-color: var(--accent); cursor: pointer; }
+  .check-item label { cursor: pointer; color: var(--text-soft); font-size: 14px; }
+  .check-item.done { opacity: .75; background: var(--light-red); border-color: var(--border-strong); }
+  .check-item.done label { text-decoration: line-through; color: var(--muted); }
+  .plan-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(210px,1fr)); gap: 10px; }
+  .day { background: var(--card-soft); border: 1px solid var(--border); border-radius: 16px; padding: 14px; min-height: 105px; position: relative; transition: all .2s; }
+  .day:hover { transform: translateY(-2px); border-color: var(--border-strong); }
+  .day::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent); border-radius: 16px 0 0 16px; }
+  .day b { display: block; color: var(--accent); margin-bottom: 5px; font-size: 13px; }
+  .day p { margin: 0; color: var(--text-soft); font-size: 13px; }
+  .day.critical { border-color: rgba(239,68,68,.4); background: rgba(239,68,68,.08); }
+  .day.critical::before { background: var(--red); }
+  .manual-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 18px; margin-bottom: 14px; box-shadow: var(--shadow); }
+  .manual-card h3 { margin: 0 0 8px; font-size: 18px; }
+  .manual-card p { color: var(--text-soft); margin: 6px 0; white-space: pre-wrap; font-size: 14px; }
+  .check-input { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border-strong); }
+  .check-input label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 6px; font-weight: 700; }
+  .check-input textarea { width: 100%; padding: 11px 13px; border-radius: 11px; border: 1px solid var(--border-strong); background: var(--card-soft); color: var(--text); font-size: 14px; font-family: inherit; resize: vertical; min-height: 90px; }
+  .oral-self-check { margin-top: 10px; padding: 11px 13px; border-radius: 12px; background: var(--card-soft); border: 1px solid var(--border); }
+  .oral-self-check .oral-score-label { display: block; font-size: 12px; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
+  .oral-score-row { display: flex; align-items: center; gap: 8px; padding: 5px 0; font-size: 13px; color: var(--text-soft); }
+  .oral-score-row input[type="radio"] { accent-color: var(--accent); width: 17px; height: 17px; cursor: pointer; }
+  .oral-score-row label { cursor: pointer; }
+  .oral-ticket-total { margin-top: 8px; padding: 9px 13px; border-radius: 11px; background: var(--light-red); border: 1px solid var(--border-strong); font-weight: 800; color: var(--accent); font-size: 14px; text-align: center; }
+  .oral-summary-box { margin-top: 20px; padding: 20px; border-radius: 22px; background: var(--light-red); border: 1px solid var(--border-strong); text-align: center; }
+  .oral-summary-box .score { font-size: 44px; font-weight: 950; color: var(--accent); }
+  .oral-timer-widget { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; padding: 12px; border-radius: 14px; background: var(--card-soft); border: 1px solid var(--border); }
+  .oral-timer-widget #oralTimerDisplay { font-variant-numeric: tabular-nums; font-weight: 900; font-size: 17px; min-width: 85px; text-align: center; }
+  .oral-timer-widget.warning #oralTimerDisplay { color: var(--orange); }
+  .oral-timer-widget.danger #oralTimerDisplay { color: var(--red); animation: pulse 1s infinite; }
+  .support-card { background: var(--card); border: 1px solid var(--border-strong); border-radius: 22px; padding: 22px; box-shadow: var(--shadow); text-align: center; }
+  .support-card h2 { margin-bottom: 8px; }
+  .support-card p { margin: 8px 0; color: var(--text-soft); }
+  .phone { color: var(--accent); font-weight: 900; text-decoration: none; border-bottom: 1px dashed var(--accent); }
+  .copy-status { margin-left: 6px; color: var(--accent); font-weight: 850; }
+  footer { padding: 26px 0 44px; color: var(--muted); text-align: center; border-top: 1px solid var(--border); margin-top: 26px; font-size: 13px; }
+  .reference-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 12px; }
+  .reference-table th, .reference-table td { border: 1px solid var(--border); padding: 6px; text-align: left; }
+  .reference-table th { background: var(--light-red); color: var(--accent); }
+  .criteria-block { background: var(--card-soft); border: 1px solid var(--border); border-radius: 12px; padding: 13px 15px; margin-top: 12px; font-size: 12px; color: var(--text-soft); line-height: 1.6; }
+  .criteria-block strong { color: var(--accent); display: block; margin-bottom: 5px; }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); gap: 10px; margin-top: 12px; }
+  .stat-box { background: var(--card-soft); border: 1px solid var(--border); border-radius: 14px; padding: 14px; text-align: center; }
+  .stat-box .num { font-size: 26px; font-weight: 950; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .stat-box .lbl { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  .topic-stat { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: var(--card-soft); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 8px; }
+  .topic-stat-label { font-size: 13px; color: var(--text-soft); font-weight: 700; }
+  .topic-stat-bar { flex: 1; max-width: 200px; margin: 0 14px; height: 8px; background: var(--light-red); border-radius: 999px; overflow: hidden; }
+  .topic-stat-fill { height: 100%; background: linear-gradient(90deg,var(--accent2),var(--accent)); border-radius: 999px; transition: width .4s; }
+  .topic-stat-num { font-size: 13px; font-weight: 850; color: var(--accent); min-width: 50px; text-align: right; }
+  .export-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+  .print-only { display: none; }
+  @media print {
+    header, nav, .top-controls, .actions, .reset-bar, .filter-bar, .variant-bar, footer, .support-card, .oral-timer-widget, .oral-self-check, .check-input, .btn, .icon-btn, .export-row { display: none !important; }
+    body { background: #fff; color: #000; }
+    .container { width: 100%; }
+    .question-block, .manual-card, .card, .panel { break-inside: avoid; border: 1px solid #ccc; box-shadow: none; }
+    .print-only { display: block !important; }
+    .q-info { background: #f5f5f5; }
+    .option { border: 1px solid #999; background: #fafafa; }
+    .result-block { border: 1px solid #999; background: #fafafa; }
+  }
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; } .metrics { grid-template-columns: 1fr; }
+    nav { gap: 10px; font-size: 12px; }
+    .top-controls { width: 100%; justify-content: space-between; }
+    .variant-bar { position: static; }
+    .mode-toggle { margin-left: 0; width: 100%; justify-content: center; }
+  }
+  .fade-in { animation: fadeIn .4s; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="container topbar">
+    <div class="brand">
+      <img src="favicon.ico" class="brand-logo" alt="Anti-AI Qwen Academy" onerror="this.style.display='none'" />
+      <div>
+        <strong data-i18n="brandTitle">Анти-ИИ Квен Академия</strong>
+        <small data-i18n="brandSub">Русский язык • 6 класс • PRO 2026</small>
+      </div>
+    </div>
+    <nav>
+      <a href="#structure" data-i18n="navStructure">Структура</a>
+      <a href="#trainer" data-i18n="navTrainer">Тренажёр</a>
+      <a href="#oral" data-i18n="navOral">Устная</a>
+      <a href="#stats" data-i18n="navStats">Статистика</a>
+      <a href="#references" data-i18n="navRefs">Справочник</a>
+      <a href="#checklist" data-i18n="navChecklist">Чек-лист</a>
+      <a href="#plan" data-i18n="navPlan">План</a>
+      <a href="#support" data-i18n="navSupport">Поддержать</a>
+    </nav>
+    <div class="top-controls">
+      <button id="themeToggle" class="icon-btn" type="button" aria-label="Theme"><span id="themeIcon">🌙</span></button>
+      <button id="langToggle" class="icon-btn" type="button" aria-label="Language">
+        <span class="lang-option active" data-lang="ru">RU</span><span>/</span><span class="lang-option" data-lang="uz">UZ</span><span>/</span><span class="lang-option" data-lang="en">EN</span>
+      </button>
+      <button id="printBtn" class="icon-btn" type="button" title="Печать" onclick="window.print()">🖨</button>
+      <button id="exportBtn" class="icon-btn" type="button" title="Экспорт" onclick="exportResults()">💾</button>
+      <div class="timer-widget" id="timerWidget" role="group" aria-label="Timer">
+        <span id="timerDisplay">00:45:00</span>
+        <button id="timerToggle" class="timer-btn" type="button" aria-label="Start/Pause">▶</button>
+        <button id="timerReset" class="timer-btn" type="button" aria-label="Reset">↺</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="variant-bar">
+  <div class="container variant-row">
+    <span class="variant-label" data-i18n="variantLabel">Вариант:</span>
+    <div id="variantButtons" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
+    <div class="mode-toggle" role="tablist">
+      <button class="mode-btn active" data-mode="training" onclick="setMode('training', this)" data-i18n="modeTraining">🎓 Тренировка</button>
+      <button class="mode-btn" data-mode="exam" onclick="setMode('exam', this)" data-i18n="modeExam">📝 Экзамен</button>
+      <button class="mode-btn" data-mode="review" onclick="setMode('review', this)" data-i18n="modeReview">🔁 Ошибки</button>
+    </div>
+  </div>
+</div>
+
+<main class="container">
+  <section class="hero">
+    <div>
+      <span class="badge" data-i18n="badge">Бесплатно • 4 варианта • 56 заданий • Устная + Письменная части</span>
+      <h1 data-i18n="h1">Профессиональный тренажёр по <span class="accent">русскому языку</span> для 6 класса</h1>
+      <p class="lead" data-i18n="lead">Полная база заданий по образцу ФИПИ 2026. 14 заданий в каждом варианте: устная часть (4 задания, 10 баллов) + письменная часть (10 заданий, 12 баллов). Максимум — 22 балла, минимум — 20 (из них не менее 9 за устную часть).</p>
+      <div class="actions">
+        <button class="btn" onclick="scrollToId('trainer')" data-i18n="actionTrainer">Пройти тест</button>
+        <button class="btn secondary" onclick="scrollToId('oral')" data-i18n="actionOral">Устная часть</button>
+        <button class="btn secondary" onclick="scrollToId('stats')" data-i18n="actionStats">Статистика</button>
+      </div>
+    </div>
+    <aside class="panel">
+      <h3 data-i18n="quickStats">Твой прогресс</h3>
+      <div class="metrics">
+        <div class="metric"><strong id="answeredCount">0/10</strong><span data-i18n="metricAnswered">заданий решено</span></div>
+        <div class="metric green"><strong id="correctCount">0</strong><span data-i18n="metricCorrect">правильных</span></div>
+        <div class="metric blue"><strong id="checklistProgress">0%</strong><span data-i18n="metricChecklist">чек-лист</span></div>
+      </div>
+      <progress id="overall" value="0" max="100"></progress>
+      <p class="note" data-i18n="noteReset">Прогресс не сохраняется — каждая загрузка страницы начинается с нуля.</p>
+      <div class="export-row">
+        <button class="btn secondary small" onclick="resetAll()" data-i18n="resetAll">Сбросить</button>
+        <button class="btn small" onclick="scrollToId('stats')" data-i18n="showStats">📊 Статистика</button>
+      </div>
+    </aside>
+  </section>
+
+  <section id="structure">
+    <div class="section-head"><div><h2 data-i18n="structureTitle">Структура тестирования</h2><p class="sub" data-i18n="structureSub">Устная часть (15 мин) + Письменная часть (45 мин).</p></div></div>
+    <div class="grid" id="structureGrid"></div>
+  </section>
+
+  <section id="trainer">
+    <div class="section-head">
+      <div>
+        <h2 data-i18n="trainerTitle">Тренажёр (письменная часть)</h2>
+        <p class="sub" data-i18n="trainerSub">Задания 5–14. Выбери вариант сверху и режим работы.</p>
+      </div>
+    </div>
+    <div class="filter-bar">
+      <span data-i18n="filterShow">Показать:</span>
+      <button class="filter-btn active" data-filter="all" id="filterAll" onclick="setFilter('all', this)"></button>
+      <button class="filter-btn" data-filter="listening" id="filterListening" onclick="setFilter('listening', this)"></button>
+      <button class="filter-btn" data-filter="grammar" id="filterGrammar" onclick="setFilter('grammar', this)"></button>
+      <button class="filter-btn" data-filter="writing" id="filterWriting" onclick="setFilter('writing', this)"></button>
+    </div>
+    <div class="reset-bar"><button class="btn secondary small" onclick="resetVariant()" data-i18n="resetVariant">Сбросить ответы варианта</button></div>
+    <div id="quizContainer"></div>
+    <div id="summaryBox"></div>
+  </section>
+
+  <section id="oral">
+    <div class="section-head"><div><h2 data-i18n="oralTitle">Устная часть (Задания 1–4)</h2><p class="sub" data-i18n="oralSub">Диалог, монолог, чтение вслух, пересказ по плану. Подготовка — 15 минут.</p></div></div>
+    <div class="criteria-block" id="oralCriteriaBlock"></div>
+    <div class="oral-timer-widget" id="oralTimerWidget">
+      <strong data-i18n="oralTimerLabel">⏱ Таймер устной части (15 мин):</strong>
+      <span id="oralTimerDisplay">15:00</span>
+      <button class="timer-btn" id="oralTimerToggle" type="button">▶</button>
+      <button class="timer-btn" id="oralTimerReset" type="button">↺</button>
+    </div>
+    <div id="oralContainer"></div>
+    <div id="oralSummaryBox"></div>
+  </section>
+
+  <section id="stats">
+    <div class="section-head"><div><h2 data-i18n="statsTitle">Статистика</h2><p class="sub" data-i18n="statsSub">Прогресс по всем вариантам и разделам.</p></div></div>
+    <div id="statsContainer"></div>
+  </section>
+
+  <section id="references">
+    <div class="section-head"><div><h2 data-i18n="refsTitle">Справочник и критерии</h2><p class="sub" data-i18n="refsSub">Шкалы перевода + полезные правила.</p></div></div>
+    <div class="grid" id="refsGrid"></div>
+    <div class="card" style="margin-top:14px;">
+      <h3 data-i18n="refRules">Что нужно помнить на экзамене</h3>
+      <ul class="mini-list" id="examTipsList"></ul>
+    </div>
+  </section>
+
+  <section id="checklist">
+    <div class="section-head"><div><h2 data-i18n="checklistTitle">Чек-лист подготовки</h2><p class="sub" data-i18n="checklistSub">Прогресс не сохраняется — всё сбрасывается при обновлении.</p></div></div>
+    <ul class="checklist" id="checklistUl"></ul>
+  </section>
+
+  <section id="plan">
+    <div class="section-head"><div><h2 data-i18n="planTitle">План подготовки: 14 дней</h2><p class="sub" data-i18n="planSub">Маршрут для поступающих в 6 класс.</p></div></div>
+    <div class="plan-grid" id="planGrid"></div>
+  </section>
+
+  <section id="support">
+    <div class="support-card">
+      <h2 data-i18n="supportTitle">🤝 ПОДДЕРЖАТЬ ПРОЕКТ ❤️</h2>
+      <p data-i18n="supportP1"><strong>Приложение бесплатное. Было и останется.</strong></p>
+      <p data-i18n="supportP2">Все приложения бесплатны и без рекламы. Ваша помощь развивает офлайн-безопасность и образование.</p>
+      <p>
+        <span data-i18n="supportPhoneLabel">📱 ПЕРЕВОД ПО НОМЕРУ:</span>
+        <a class="phone" href="tel:89202275676">8-920-227-56-76</a>
+        <button class="btn small" onclick="copyPhone()" data-i18n="copyPhone">📋 Копировать</button>
+        <span id="copyStatus" class="copy-status" aria-live="polite"></span>
+      </p>
+      <p data-i18n="supportP3">✅ Мгновенно. Без комиссии. Безопасно.</p>
+      <p data-i18n="supportP4">❤️ Спасибо за поддержку!</p>
+      <p>🌟 👉 <a href="https://ancf-hue.github.io/" target="_blank" rel="noopener noreferrer" style="color:var(--accent);font-weight:800;text-decoration:none;" data-i18n="supportCatalog">Каталог офлайн-приложений Anti-AI Shield</a></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container" data-i18n="footer">Анти-ИИ Квен Академия • PRO • Русский язык • 6 класс • 2026</div>
+</footer>
+
+<script>
+/* ============================================================
+   STATE — без сохранения, при каждой загрузке всё с нуля
+============================================================ */
+let currentLang = "ru";
+let currentTheme = "dark";
+let currentVariant = "A";
+let currentMode = "training";
+let currentFilter = "all";
+let savedAnswers = {};
+let oralState = {};
+let checklistState = {};
+
+function loadState() { /* намеренно пусто */ }
+function persistState() { /* намеренно пусто */ }
+function answerKey(qid) { return currentVariant + "_" + qid; }
+function getAnswer(qid) { return savedAnswers[answerKey(qid)]; }
+function setAnswer(qid, val) { savedAnswers[answerKey(qid)] = val; }
+
+function loc(obj) {
+  if (!obj) return "";
+  if (obj[currentLang] !== undefined) return obj[currentLang];
+  return obj.ru || obj.en || "";
+}
+
+function getContent(q) {
+  if (!q) return {};
+  return q[currentLang] || q.ru || q.en || {};
+}
+
+function getOralContent(t) {
+  if (!t) return {};
+  return t[currentLang] || t.ru || t.en || {};
+}
+
+function fieldOrDefault(q, field) {
+  const c = getContent(q);
+  if (c && c[field] !== undefined && c[field] !== "") return c[field];
+  if (q.ru && q.ru[field] !== undefined && q.ru[field] !== "") return q.ru[field];
+  if (q.en && q.en[field] !== undefined && q.en[field] !== "") return q.en[field];
+  return "";
+}
+
+function oralFieldOrDefault(t, field) {
+  const c = getOralContent(t);
+  if (c && c[field] !== undefined && c[field] !== "") return c[field];
+  if (t.ru && t.ru[field] !== undefined && t.ru[field] !== "") return t.ru[field];
+  if (t.en && t.en[field] !== undefined && t.en[field] !== "") return t.en[field];
+  return "";
+}
+
+function escapeHtml(str) { return String(str ?? "").replace(/[&<>"']/g, m => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[m])); }
+function scrollToId(id) { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); }
+
+/* ============================================================
+   I18N
+============================================================ */
+const I18N = {
+  ru: {
+    docTitle: "Анти-ИИ Квен Академия | Русский язык • 6 класс • PRO",
+    brandTitle: "Анти-ИИ Квен Академия", brandSub: "Русский язык • 6 класс • PRO 2026",
+    navStructure: "Структура", navTrainer: "Тренажёр", navOral: "Устная", navStats: "Статистика",
+    navRefs: "Справочник", navChecklist: "Чек-лист", navPlan: "План", navSupport: "Поддержать",
+    badge: "Бесплатно • 4 варианта • 56 заданий • Устная + Письменная части",
+    h1: 'Профессиональный тренажёр по <span class="accent">русскому языку</span> для 6 класса',
+    lead: "Полная база заданий по образцу ФИПИ 2026. 14 заданий в каждом варианте: устная часть (4 задания, 10 баллов) + письменная часть (10 заданий, 12 баллов). Максимум — 22 балла, минимум — 20 (из них не менее 9 за устную часть).",
+    actionTrainer: "Пройти тест", actionOral: "Устная часть", actionStats: "Статистика",
+    quickStats: "Твой прогресс", metricAnswered: "заданий решено", metricCorrect: "правильных", metricChecklist: "чек-лист",
+    noteReset: "Прогресс не сохраняется — каждая загрузка страницы начинается с нуля.",
+    variantLabel: "Вариант:", modeTraining: "🎓 Тренировка", modeExam: "📝 Экзамен", modeReview: "🔁 Ошибки",
+    structureTitle: "Структура тестирования", structureSub: "Устная часть (15 мин) + Письменная часть (45 мин).",
+    trainerTitle: "Тренажёр (письменная часть)", trainerSub: "Задания 5–14. Выбери вариант сверху и режим работы.",
+    filterShow: "Показать:", filterAll: "Все", filterListening: "Слушание (5-8)", filterGrammar: "Грамматика (9-12)", filterWriting: "Письмо (13-14)",
+    resetVariant: "Сбросить ответы варианта", resetAll: "Сбросить всё", showStats: "📊 Статистика",
+    oralTitle: "Устная часть (Задания 1–4)", oralSub: "Диалог, монолог, чтение вслух, пересказ по плану.",
+    oralCriteria: "Критерии оценивания:",
+    refsTitle: "Справочник и критерии", refsSub: "Шкалы перевода + полезные правила.", refRules: "Что нужно помнить на экзамене",
+    checklistTitle: "Чек-лист подготовки", checklistSub: "Прогресс не сохраняется — всё сбрасывается при обновлении.",
+    planTitle: "План подготовки: 14 дней", planSub: "Маршрут для поступающих в 6 класс.", dayPrefix: "День",
+    statsTitle: "Статистика", statsSub: "Прогресс по всем вариантам и разделам.",
+    supportTitle: "🤝 ПОДДЕРЖАТЬ ПРОЕКТ ❤️", supportP1: "<strong>Приложение бесплатное. Было и останется.</strong>",
+    supportP2: "Все приложения бесплатны и без рекламы. Ваша помощь развивает офлайн-безопасность и образование.",
+    supportPhoneLabel: "📱 ПЕРЕВОД ПО НОМЕРУ:", copyPhone: "📋 Копировать", copied: "✓ Скопировано",
+    supportP3: "✅ Мгновенно. Без комиссии. Безопасно.", supportP4: "❤️ Спасибо за поддержку!",
+    supportCatalog: "Каталог офлайн-приложений Anti-AI Shield",
+    footer: "Анти-ИИ Квен Академия • PRO • Русский язык • 6 класс • 2026",
+    resultCorrect: "✅ Правильно! Молодец!", resultWrong: "❌ Ошибка. Попробуй ещё раз.",
+    correctAnswer: "Правильный ответ:", explanation: "Пояснение:", source: "Источник:",
+    summaryAnswered: "Пройдено:", summaryOf: "из", summaryCorrect: "Правильных:",
+    summaryFinish: "Ответь на все задания, чтобы увидеть итог.",
+    verdictExcellent: "Отличный результат! Ты готов к школе!", verdictGood: "Хорошо, но повтори ошибки.", verdictNeeds: "Нужно потренироваться ещё немного.",
+    resetConfirm: "Сбросить все ответы?", copyFail: "Не удалось скопировать. Номер: ",
+    questionLabel1: "1. Задание", questionLabel2: "2. Подсказка", questionLabel3: "3. Твой ответ",
+    levelShort: "Краткий ответ", levelLong: "Развёрнутый ответ",
+    sourceShort: "ФИПИ 2026, задание {task}", sourceLong: "ФИПИ 2026, задание {task}",
+    timerUp: "Время вышло!",
+    matchPlaceholder: "Впиши ответ", matchCheck: "Проверить", showSolution: "Показать ответ",
+    oralTag: "Устная часть", oralTaskPrefix: "Задание", oralQ1: "Вопрос / задание",
+    oralSelfLabel: "Самооценка (по критериям ФИПИ):", oralPlaceholder: "Запиши свой ответ или план...",
+    oralScore4: "4 — пересказал(а) всё", oralScore3: "3 — читаю хорошо", oralScore2: "2 — читаю нормально",
+    oralScore1: "1 — было трудно", oralScore0: "0 — не выполнил(а)",
+    oralTicketTotal: "Итог", oralSummaryProgress: "Выполнено заданий",
+    oralScaleHint: "Норма: чтение 75–80 слов/мин, монолог ≥5 фраз, пересказ по плану.",
+    oralTimerLabel: "⏱ Таймер устной части (15 мин):", oralTimerUp: "Стоп! Время вышло.",
+    timerStart: "Старт", timerPause: "Пауза",
+    modeTrainingTip: "Режим тренировки: подсказки и пояснения доступны сразу.",
+    modeExamTip: "Режим экзамена: подсказки скрыты до конца работы.",
+    modeReviewTip: "Режим работы над ошибками: показаны только неверно решённые задания.",
+    reviewEmpty: "🎉 Ошибок нет! Отличная работа.",
+    reviewEmptyHint: "Реши задания в режиме тренировки или экзамена, чтобы появились ошибки для разбора.",
+    exportDone: "✓ Файл сохранён", exportEmpty: "Нет данных для экспорта",
+    statTotalAnswered: "Всего решено", statTotalCorrect: "Правильных", statAccuracy: "Точность",
+    statVariants: "Вариантов пройдено", statBySection: "По разделам", statByVariant: "По вариантам",
+    wordCountLabel: "Слов:", wordCountMin: "мин. 70 слов для зачёта"
+  },
+  en: {
+    docTitle: "Anti-AI Qwen Academy | Russian Language • Grade 6 • PRO",
+    brandTitle: "Anti-AI Qwen Academy", brandSub: "Russian Language • Grade 6 • PRO 2026",
+    navStructure: "Structure", navTrainer: "Trainer", navOral: "Oral", navStats: "Stats",
+    navRefs: "Reference", navChecklist: "Checklist", navPlan: "Plan", navSupport: "Support",
+    badge: "Free • 4 variants • 56 tasks • Oral + Written",
+    h1: 'Professional Russian <span class="accent">language trainer</span> for Grade 6',
+    lead: "Full FIPI 2026 database. 14 tasks per variant: oral (4 tasks, 10 points) + written (10 tasks, 12 points). Max — 22 points, minimum to pass — 20 (at least 9 oral).",
+    actionTrainer: "Start test", actionOral: "Oral part", actionStats: "Statistics",
+    quickStats: "Your progress", metricAnswered: "tasks solved", metricCorrect: "correct", metricChecklist: "checklist",
+    noteReset: "Progress is not saved — every page reload starts from scratch.",
+    variantLabel: "Variant:", modeTraining: "🎓 Training", modeExam: "📝 Exam", modeReview: "🔁 Mistakes",
+    structureTitle: "Test structure", structureSub: "Oral part (15 min) + Written part (45 min).",
+    trainerTitle: "Trainer (written part)", trainerSub: "Tasks 5–14. Choose a variant and mode above.",
+    filterShow: "Show:", filterAll: "All", filterListening: "Listening (5-8)", filterGrammar: "Grammar (9-12)", filterWriting: "Writing (13-14)",
+    resetVariant: "Reset variant answers", resetAll: "Reset all", showStats: "📊 Statistics",
+    oralTitle: "Oral Part (Tasks 1–4)", oralSub: "Dialogue, monologue, reading aloud, retelling by plan.",
+    oralCriteria: "Evaluation criteria:",
+    refsTitle: "Reference & criteria", refsSub: "Scales + useful rules.", refRules: "What to remember during the test",
+    checklistTitle: "Preparation checklist", checklistSub: "Progress is not saved — everything resets on reload.",
+    planTitle: "14-day preparation plan", planSub: "Route for Grade 6 applicants.", dayPrefix: "Day",
+    statsTitle: "Statistics", statsSub: "Progress across all variants and sections.",
+    supportTitle: "🤝 SUPPORT THE PROJECT ❤️", supportP1: "<strong>The app is free.</strong>",
+    supportP2: "All apps are free and ad-free.",
+    supportPhoneLabel: "📱 TRANSFER BY PHONE:", copyPhone: "📋 Copy", copied: "✓ Copied",
+    supportP3: "✅ Instantly. No commission.", supportP4: "❤️ Thanks!",
+    supportCatalog: "Catalog of Anti-AI Shield apps",
+    footer: "Anti-AI Qwen Academy • PRO • Russian Language • Grade 6 • 2026",
+    resultCorrect: "✅ Correct! Well done!", resultWrong: "❌ Wrong. Try again.",
+    correctAnswer: "Correct answer:", explanation: "Explanation:", source: "Source:",
+    summaryAnswered: "Completed:", summaryOf: "of", summaryCorrect: "Correct:",
+    summaryFinish: "Answer all tasks to see the result.",
+    verdictExcellent: "Excellent! You are ready for school!", verdictGood: "Good, but review mistakes.", verdictNeeds: "Need a bit more practice.",
+    resetConfirm: "Reset all answers?", copyFail: "Could not copy. Number: ",
+    questionLabel1: "1. Task", questionLabel2: "2. Hint", questionLabel3: "3. Your answer",
+    levelShort: "Short answer", levelLong: "Extended answer",
+    sourceShort: "FIPI 2026, task {task}", sourceLong: "FIPI 2026, task {task}",
+    timerUp: "Time is up!",
+    matchPlaceholder: "Enter answer", matchCheck: "Check", showSolution: "Show answer",
+    oralTag: "Oral part", oralTaskPrefix: "Task", oralQ1: "Question / task",
+    oralSelfLabel: "Self-assessment (FIPI criteria):", oralPlaceholder: "Write your answer or plan...",
+    oralScore4: "4 — retold everything", oralScore3: "3 — read well", oralScore2: "2 — read okay",
+    oralScore1: "1 — was hard", oralScore0: "0 — didn't do it",
+    oralTicketTotal: "Total", oralSummaryProgress: "Tasks completed",
+    oralScaleHint: "Norm: reading 75–80 wpm, monologue ≥5 phrases, retelling by plan.",
+    oralTimerLabel: "⏱ Oral timer (15 min):", oralTimerUp: "Stop! Time's up.",
+    timerStart: "Start", timerPause: "Pause",
+    modeTrainingTip: "Training mode: hints and explanations available immediately.",
+    modeExamTip: "Exam mode: hints hidden until the end.",
+    modeReviewTip: "Mistake review mode: only incorrectly solved tasks are shown.",
+    reviewEmpty: "🎉 No mistakes! Great job.",
+    reviewEmptyHint: "Solve tasks in training or exam mode to collect mistakes for review.",
+    exportDone: "✓ File saved", exportEmpty: "No data to export",
+    statTotalAnswered: "Total solved", statTotalCorrect: "Correct", statAccuracy: "Accuracy",
+    statVariants: "Variants passed", statBySection: "By section", statByVariant: "By variant",
+    wordCountLabel: "Words:", wordCountMin: "min. 70 words to pass"
+  }
+};
+
+Object.assign(I18N.ru, {
+  taskWord: "задание",
+  longPlaceholder: "Напиши решение здесь...",
+  oralMax: "макс.",
+  summaryAuto: "(из {n} автопроверяемых)",
+  variantWord: "Вариант",
+  exportTitle: "=== Анти-ИИ Квен Академия • PRO • 6 класс ===",
+  exportDate: "Дата",
+  exportVariant: "Вариант",
+  exportMode: "Режим",
+  exportAnswers: "Ответов",
+  exportCorrect: "Правильных (автопроверяемых)",
+  exportAnswersHeader: "=== ОТВЕТЫ ===",
+  exportOralHeader: "=== УСТНАЯ ЧАСТЬ ===",
+  exportTask: "Задание",
+  refWrittenCriteria: "Критерии письменной части",
+  refOralCriteriaTitle: "Критерии устной части",
+  refScaleTitle: "Шкала перевода",
+  tableType: "Тип",
+  tablePoints: "Балл",
+  tableTask: "Задание",
+  tableResult: "Результат",
+  refTasks5_12: "Задания 5–12",
+  refEach0_1: "0–1 каждый",
+  refTask13: "Задание 13 (списывание)",
+  refTask14: "Задание 14 (сочинение)",
+  refMax: "Максимум",
+  refOral1: "1. Диалог",
+  refOral2: "2. Монолог (5+ предл.)",
+  refOral3: "3. Чтение",
+  refOral4: "4. Пересказ по плану",
+  refPass: "✅ Тест пройден",
+  refFail: "❌ Тест не пройден",
+  refOralNote: "Из 20 баллов не менее 9 — за устную часть.",
+  oralCriteriaBody: "• Задание 1 (Диалог) — макс. 1 балл.<br/>• Задание 2 (Монолог, 5+ предложений) — макс. 2 балла.<br/>• Задание 3 (Чтение) — макс. 3 балла.<br/>• Задание 4 (Пересказ по плану) — макс. 4 балла.<br/><strong>Максимум за устную часть:</strong> 10 баллов.",
+  examTips: [
+    "<strong>Не бойся!</strong> Это просто проверка того, как ты говоришь по-русски.",
+    "<strong>Слушай внимательно:</strong> Задания читают на русском языке.",
+    "<strong>Отвечай полными предложениями:</strong> Где можешь — не одним словом.",
+    "<strong>Если не знаешь:</strong> Скажи «Не знаю» — это лучше, чем молчать.",
+    "<strong>Устная часть:</strong> Старайся говорить чётко и не спеша.",
+    "<strong>Задание 14:</strong> Объём сочинения — не менее 70 слов. Отвечай на оба вопроса."
+  ]
+});
+
+Object.assign(I18N.en, {
+  taskWord: "task",
+  longPlaceholder: "Write your answer here...",
+  oralMax: "max",
+  summaryAuto: "(of {n} auto-checked)",
+  variantWord: "Variant",
+  exportTitle: "=== Anti-AI Qwen Academy • PRO • Grade 6 ===",
+  exportDate: "Date",
+  exportVariant: "Variant",
+  exportMode: "Mode",
+  exportAnswers: "Answered",
+  exportCorrect: "Correct (auto-checked)",
+  exportAnswersHeader: "=== ANSWERS ===",
+  exportOralHeader: "=== ORAL PART ===",
+  exportTask: "Task",
+  refWrittenCriteria: "Written part criteria",
+  refOralCriteriaTitle: "Oral part criteria",
+  refScaleTitle: "Conversion scale",
+  tableType: "Type",
+  tablePoints: "Point",
+  tableTask: "Task",
+  tableResult: "Result",
+  refTasks5_12: "Tasks 5–12",
+  refEach0_1: "0–1 each",
+  refTask13: "Task 13 (copying)",
+  refTask14: "Task 14 (essay)",
+  refMax: "Maximum",
+  refOral1: "1. Dialogue",
+  refOral2: "2. Monologue (5+ sentences)",
+  refOral3: "3. Reading",
+  refOral4: "4. Retelling by plan",
+  refPass: "✅ Test passed",
+  refFail: "❌ Test failed",
+  refOralNote: "Of 20 points, at least 9 must be oral.",
+  oralCriteriaBody: "• Task 1 (Dialogue) — max 1 point.<br/>• Task 2 (Monologue, 5+ sentences) — max 2 points.<br/>• Task 3 (Reading) — max 3 points.<br/>• Task 4 (Retelling by plan) — max 4 points.<br/><strong>Maximum for oral part:</strong> 10 points.",
+  examTips: [
+    "<strong>Don't be afraid!</strong> It is just a check of how you speak Russian.",
+    "<strong>Listen carefully:</strong> Tasks are read in Russian.",
+    "<strong>Answer with full sentences:</strong> Where possible, not just one word.",
+    "<strong>If you don't know:</strong> Say \"I don't know\" — it is better than silence.",
+    "<strong>Oral part:</strong> Try to speak clearly and without rushing.",
+    "<strong>Task 14:</strong> Essay volume — at least 70 words. Answer both questions."
+  ]
+});
+
+I18N.uz = {
+  docTitle: "Anti-AI Qwen Akademiyasi | Rus tili • 6-sinf • PRO",
+  brandTitle: "Anti-AI Qwen Akademiyasi",
+  brandSub: "Rus tili • 6-sinf • PRO 2026",
+  navStructure: "Tuzilma",
+  navTrainer: "Mashq",
+  navOral: "Og'zaki",
+  navStats: "Statistika",
+  navRefs: "Ma'lumotnoma",
+  navChecklist: "Tekshiruv ro'yxati",
+  navPlan: "Reja",
+  navSupport: "Qo'llab-quvvatlash",
+  badge: "Bepul • 4 variant • 56 topshiriq • Og'zaki + Yozma qism",
+  h1: "6-sinf uchun professional <span class=\"accent\">rus tili</span> mashg'uloti",
+  lead: "FIPI 2026 namunasi bo'yicha to'liq topshiriqlar bazasi. Har bir variantda 14 topshiriq: og'zaki qism (4 topshiriq, 10 ball) + yozma qism (10 topshiriq, 12 ball). Maksimal — 22 ball, o'tish uchun minimal — 20 (shundan kamida 9 og'zaki qismdan).",
+  actionTrainer: "Testni boshlash",
+  actionOral: "Og'zaki qism",
+  actionStats: "Statistika",
+  quickStats: "Sizning taraqqiyotingiz",
+  metricAnswered: "bajarilgan topshiriq",
+  metricCorrect: "to'g'ri",
+  metricChecklist: "tekshiruv ro'yxati",
+  noteReset: "Jarayon saqlanmaydi — har safar yangi yuklash noldan boshlanadi.",
+  variantLabel: "Variant:",
+  modeTraining: "🎓 Mashq",
+  modeExam: "📝 Imtihon",
+  modeReview: "🔁 Xatolar",
+  structureTitle: "Test tuzilmasi",
+  structureSub: "Og'zaki qism (15 daqiqa) + Yozma qism (45 daqiqa).",
+  trainerTitle: "Mashq (yozma qism)",
+  trainerSub: "5–14 topshiriqlar. Yuqoridan variant va rejimni tanlang.",
+  filterShow: "Ko'rsatish:",
+  filterAll: "Hammasi",
+  filterListening: "Tinglash (5-8)",
+  filterGrammar: "Grammatika (9-12)",
+  filterWriting: "Yozish (13-14)",
+  resetVariant: "Variant javoblarini tozalash",
+  resetAll: "Hammasini tozalash",
+  showStats: "📊 Statistika",
+  oralTitle: "Og'zaki qism (1–4 topshiriq)",
+  oralSub: "Dialog, monolog, ovozli o'qish, reja bo'yicha qayta hikoya qilish.",
+  oralCriteria: "Baholash mezonlari:",
+  refsTitle: "Ma'lumotnoma va mezonlar",
+  refsSub: "Ball shkalasi + foydali qoidalar.",
+  refRules: "Imtihonda eslab qolish kerak",
+  checklistTitle: "Tayyorgarlik tekshiruv ro'yxati",
+  checklistSub: "Jarayon saqlanmaydi — yangilanganda hammasi tozalanadi.",
+  planTitle: "Tayyorgarlik rejasi: 14 kun",
+  planSub: "6-sinfga kiruvchilar uchun yo'nalish.",
+  dayPrefix: "Kun",
+  statsTitle: "Statistika",
+  statsSub: "Barcha variant va bo'limlar bo'yicha jarayon.",
+  supportTitle: "🤝 LOYIHANI QO'LLAB-QUVVATLASH ❤️",
+  supportP1: "<strong>Ilova bepul. Bo'lgan va bo'lib qoladi.</strong>",
+  supportP2: "Barcha ilovalar bepul va reklamasiz. Yordamingiz oflayn xavfsizlik va ta'limni rivojlantiradi.",
+  supportPhoneLabel: "📱 TELEFON ORQALI O'TKAZMA:",
+  copyPhone: "📋 Nusxa olish",
+  copied: "✓ Nusxa olindi",
+  supportP3: "✅ Darhol. Komissiyasiz. Xavfsiz.",
+  supportP4: "❤️ Qo'llab-quvvatlaganingiz uchun rahmat!",
+  supportCatalog: "Anti-AI Shield oflayn ilovalar katalogi",
+  footer: "Anti-AI Qwen Akademiyasi • PRO • Rus tili • 6-sinf • 2026",
+  resultCorrect: "✅ To'g'ri! Ajoyib!",
+  resultWrong: "❌ Xato. Qayta urinib ko'ring.",
+  correctAnswer: "To'g'ri javob:",
+  explanation: "Izoh:",
+  source: "Manba:",
+  summaryAnswered: "Bajarildi:",
+  summaryOf: "dan",
+  summaryCorrect: "To'g'ri:",
+  summaryFinish: "Natijani ko'rish uchun barcha topshiriqlarga javob bering.",
+  verdictExcellent: "Ajoyib natija! Maktabga tayyorsiz!",
+  verdictGood: "Yaxshi, lekin xatolarni takrorlang.",
+  verdictNeeds: "Yana biroz mashq qilish kerak.",
+  resetConfirm: "Barcha javoblar tozalansinmi?",
+  copyFail: "Nusxa olish imkoni bo'lmadi. Raqam: ",
+  questionLabel1: "1. Topshiriq",
+  questionLabel2: "2. Maslahat",
+  questionLabel3: "3. Sizning javobingiz",
+  levelShort: "Qisqa javob",
+  levelLong: "Batafsil javob",
+  sourceShort: "FIPI 2026, {task}-topshiriq",
+  sourceLong: "FIPI 2026, {task}-topshiriq",
+  timerUp: "Vaqt tugadi!",
+  matchPlaceholder: "Javobni kiriting",
+  matchCheck: "Tekshirish",
+  showSolution: "Javobni ko'rsatish",
+  oralTag: "Og'zaki qism",
+  oralTaskPrefix: "Topshiriq",
+  oralQ1: "Savol / topshiriq",
+  oralSelfLabel: "O'zini-o'zi baholash (FIPI mezonlari):",
+  oralPlaceholder: "Javobingiz yoki rejangizni yozing...",
+  oralScore4: "4 — hammasini qayta aytdi",
+  oralScore3: "3 — yaxshi o'qidim",
+  oralScore2: "2 — normal o'qidim",
+  oralScore1: "1 — qiyin bo'ldi",
+  oralScore0: "0 — bajarmadim",
+  oralTicketTotal: "Yakun",
+  oralSummaryProgress: "Bajarilgan topshiriqlar",
+  oralScaleHint: "Me'yor: o'qish 75–80 so'z/daqiqa, monolog ≥5 gap, reja bo'yicha qayta hikoya.",
+  oralTimerLabel: "⏱ Og'zaki qism taymeri (15 daqiqa):",
+  oralTimerUp: "To'xta! Vaqt tugadi.",
+  timerStart: "Boshlash",
+  timerPause: "Pauza",
+  modeTrainingTip: "Mashq rejimi: maslahat va izohlar darhol mavjud.",
+  modeExamTip: "Imtihon rejimi: maslahatlar oxirigacha yashirin.",
+  modeReviewTip: "Xatolar rejimi: faqat noto'g'ri topshirilganlar ko'rsatiladi.",
+  reviewEmpty: "🎉 Xatolar yo'q! Ajoyib ish.",
+  reviewEmptyHint: "Xatolarni tahlil qilish uchun mashq yoki imtihon rejimida topshiriqlarni yeching.",
+  exportDone: "✓ Fayl saqlandi",
+  exportEmpty: "Eksport uchun ma'lumot yo'q",
+  statTotalAnswered: "Jami bajarilgan",
+  statTotalCorrect: "To'g'ri",
+  statAccuracy: "Aniqlik",
+  statVariants: "O'tilgan variantlar",
+  statBySection: "Bo'limlar bo'yicha",
+  statByVariant: "Variantlar bo'yicha",
+  wordCountLabel: "So'zlar:",
+  wordCountMin: "o'tish uchun kamida 70 so'z",
+  taskWord: "topshiriq",
+  longPlaceholder: "Javobingizni shu yerga yozing...",
+  oralMax: "maks.",
+  summaryAuto: "({n} avtomatik tekshiriladigan ichidan)",
+  variantWord: "Variant",
+  exportTitle: "=== Anti-AI Qwen Akademiyasi • PRO • 6-sinf ===",
+  exportDate: "Sana",
+  exportVariant: "Variant",
+  exportMode: "Rejim",
+  exportAnswers: "Javoblar",
+  exportCorrect: "To'g'ri (avtomatik tekshiriladigan)",
+  exportAnswersHeader: "=== JAVOBLAR ===",
+  exportOralHeader: "=== OG'ZAKI QISM ===",
+  exportTask: "Topshiriq",
+  refWrittenCriteria: "Yozma qism mezonlari",
+  refOralCriteriaTitle: "Og'zaki qism mezonlari",
+  refScaleTitle: "Ball shkalasi",
+  tableType: "Turi",
+  tablePoints: "Ball",
+  tableTask: "Topshiriq",
+  tableResult: "Natija",
+  refTasks5_12: "5–12 topshiriqlar",
+  refEach0_1: "har biri 0–1",
+  refTask13: "13-topshiriq (ko'chirish)",
+  refTask14: "14-topshiriq (insho)",
+  refMax: "Maksimal",
+  refOral1: "1. Dialog",
+  refOral2: "2. Monolog (5+ gap)",
+  refOral3: "3. O'qish",
+  refOral4: "4. Reja bo'yicha qayta hikoya",
+  refPass: "✅ Testdan o'tdi",
+  refFail: "❌ Testdan o'tmadi",
+  refOralNote: "20 balldan kamida 9 — og'zaki qism uchun.",
+  oralCriteriaBody: "• 1-topshiriq (Dialog) — maksimal 1 ball.<br/>• 2-topshiriq (Monolog, 5+ gap) — maksimal 2 ball.<br/>• 3-topshiriq (O'qish) — maksimal 3 ball.<br/>• 4-topshiriq (Reja bo'yicha qayta hikoya) — maksimal 4 ball.<br/><strong>Maksimal og'zaki qism:</strong> 10 ball.",
+  examTips: [
+    "Qo'rqma! Bu shunchaki rus tilida qanday gapirishingni tekshirish.",
+    "Diqqat bilan tingla: topshiriqlar rus tilida o'qiladi.",
+    "To'liq gaplar bilan javob ber: iloji boricha bir so'z bilan emas.",
+    "Bilmasang: \"Bilmayman\" deb ayt — jim turishdan yaxshi.",
+    "Og'zaki qism: aniq va shoshilmasdan gapirishga harakat qil.",
+    "14-topshiriq: insho hajmi kamida 70 so'z. Ikkala savolga javob ber."
+  ]
+};
+
+/* ============================================================
+   STATIC DATA
+============================================================ */
+const structureCards = [
+  { cardClass: "success-card", tagClass: "green", tag: { ru: "Устная часть", en: "Oral part", uz: "Og'zaki qism" }, title: { ru: "4 задания (10 баллов)", en: "4 tasks (10 points)", uz: "4 topshiriq (10 ball)" },
+    items: [
+      { ru: "Задание 1: Диалог (1 балл).", en: "Task 1: Dialogue (1 point).", uz: "1-topshiriq: Dialog (1 ball)." },
+      { ru: "Задание 2: Монолог, 5+ предл. (2 балла).", en: "Task 2: Monologue (2 points).", uz: "2-topshiriq: Monolog, 5+ gap (2 ball)." },
+      { ru: "Задание 3: Чтение вслух (3 балла).", en: "Task 3: Reading aloud (3 points).", uz: "3-topshiriq: Ovozli o'qish (3 ball)." },
+      { ru: "Задание 4: Пересказ по плану (4 балла).", en: "Task 4: Retelling by plan (4 points).", uz: "4-topshiriq: Reja bo'yicha qayta hikoya (4 ball)." },
+      { ru: "Время: 15 минут.", en: "Time: 15 minutes.", uz: "Vaqt: 15 daqiqa." } ] },
+  { cardClass: "warn-card", tagClass: "orange", tag: { ru: "Письменная часть", en: "Written part", uz: "Yozma qism" }, title: { ru: "10 заданий (12 баллов)", en: "10 tasks (12 points)", uz: "10 topshiriq (12 ball)" },
+    items: [
+      { ru: "Задания 5–8: Слушание (по 1 баллу).", en: "Tasks 5–8: Listening (1 point each).", uz: "5–8 topshiriqlar: Tinglash (har biri 1 ball)." },
+      { ru: "Задания 9–12: Грамматика и лексика (по 1 баллу).", en: "Tasks 9–12: Grammar & Vocab (1 point each).", uz: "9–12 topshiriqlar: Grammatika va leksika (har biri 1 ball)." },
+      { ru: "Задание 13: Списывание (2 балла).", en: "Task 13: Copying (2 points).", uz: "13-topshiriq: Ko'chirish (2 ball)." },
+      { ru: "Задание 14: Сочинение 70+ слов (2 балла).", en: "Task 14: Essay 70+ words (2 points).", uz: "14-topshiriq: Insho 70+ so'z (2 ball)." },
+      { ru: "Время: 45 минут.", en: "Time: 45 minutes.", uz: "Vaqt: 45 daqiqa." } ] },
+  { cardClass: "danger-card", tagClass: "red", tag: { ru: "Шкала перевода", en: "Conversion scale", uz: "Ball shkalasi" }, title: { ru: "Результат теста", en: "Test result", uz: "Test natijasi" },
+    items: [
+      { ru: "Максимум: 22 балла.", en: "Max: 22 points.", uz: "Maksimal: 22 ball." },
+      { ru: "Минимум для прохождения: 20 баллов.", en: "Minimum to pass: 20 points.", uz: "O'tish uchun minimal: 20 ball." },
+      { ru: "Из них не менее 9 за устную часть.", en: "At least 9 for oral part.", uz: "Shundan kamida 9 og'zaki qism uchun." } ] }
+];
+
+const checklistItems = [
+  { key: "ch1", label: { ru: "Умею отвечать на вопросы о помощи дома", en: "Can answer about helping at home", uz: "Uyda kattalarga yordam berish haqida savollarga javob bera olaman" } },
+  { key: "ch2", label: { ru: "Могу составить рассказ по картинке (5+ предложений)", en: "Can make a story from a picture (5+ sentences)", uz: "Rasm bo'yicha 5+ gapli hikoya tuzaman" } },
+  { key: "ch3", label: { ru: "Читаю вслух плавно и правильно", en: "Read aloud smoothly and correctly", uz: "Ovozli matnni ravon va to'g'ri o'qiyman" } },
+  { key: "ch4", label: { ru: "Умею пересказывать текст по плану", en: "Can retell a text by plan", uz: "Matnni reja bo'yicha qayta hikoya qila olaman" } },
+  { key: "ch5", label: { ru: "Подбираю антонимы и синонимы", en: "Select antonyms and synonyms", uz: "Antonim va sinonimlarni tanlay olaman" } },
+  { key: "ch6", label: { ru: "Употребляю существительные в нужном падеже", en: "Use nouns in the correct case", uz: "Ot so'zlarni kerakli kelishikda ishlataman" } },
+  { key: "ch7", label: { ru: "Употребляю глаголы в нужной форме", en: "Use verbs in the correct form", uz: "Fe'l so'zlarni kerakli shaklda ishlataman" } },
+  { key: "ch8", label: { ru: "Нахожу обращение в предложении", en: "Find address in a sentence", uz: "Gapda murojaatni topaman" } },
+  { key: "ch9", label: { ru: "Пишу без ошибок (приставки, корни, окончания)", en: "Write without errors", uz: "Xatosiz yozaman (prefiks, ildiz, qo'shimcha)" } },
+  { key: "ch10", label: { ru: "Могу написать сочинение 70+ слов", en: "Can write an essay of 70+ words", uz: "70+ so'zli insho yaza olaman" } }
+];
+
+const planDays = [
+  { day: 1, critical: true, text: { ru: "Диагностика: пройди вариант A полностью.", en: "Diagnostics: complete variant A.", uz: "Diagnostika: A variantni to'liq bajaring." } },
+  { day: 2, critical: false, text: { ru: "Диалог: развёрнутые ответы на 3-4 вопроса.", en: "Dialogue: extended answers to 3-4 questions.", uz: "Dialog: 3-4 savolga batafsil javoblar." } },
+  { day: 3, critical: false, text: { ru: "Монолог: описание фотографии (5+ предложений).", en: "Monologue: photo description (5+ sentences).", uz: "Monolog: fotosurat tavsifi (5+ gap)." } },
+  { day: 4, critical: false, text: { ru: "Чтение вслух: интонация по знакам препинания.", en: "Reading aloud: intonation by punctuation.", uz: "Ovozli o'qish: tinish belgilari bo'yicha intonatsiya." } },
+  { day: 5, critical: false, text: { ru: "Пересказ: 3 микротемы по плану.", en: "Retelling: 3 micro-topics by plan.", uz: "Qayta hikoya: reja bo'yicha 3 mikro mavzu." } },
+  { day: 6, critical: false, text: { ru: "Слушание: понимание деталей текста (вариант B).", en: "Listening: detail understanding (variant B).", uz: "Tinglash: matn tafsilotlarini tushunish (B variant)." } },
+  { day: 7, critical: false, text: { ru: "Грамматика: антонимы и падежи.", en: "Grammar: antonyms and cases.", uz: "Grammatika: antonim va kelishiklar." } },
+  { day: 8, critical: false, text: { ru: "Грамматика: глаголы и обращения.", en: "Grammar: verbs and addresses.", uz: "Grammatika: fe'llar va murojaatlar." } },
+  { day: 9, critical: false, text: { ru: "Орфография: приставки на -з/-с, корни.", en: "Spelling: prefixes -z/-s, roots.", uz: "Imlo: -z/-s prefikslari, ildizlar." } },
+  { day: 10, critical: true, text: { ru: "Письмо: списывание (вариант C).", en: "Writing: copying (variant C).", uz: "Yozish: ko'chirish (C variant)." } },
+  { day: 11, critical: true, text: { ru: "Сочинение: правила поведения, 70+ слов.", en: "Essay: rules of conduct, 70+ words.", uz: "Insho: xatti-harakat qoidalari, 70+ so'z." } },
+  { day: 12, critical: true, text: { ru: "Пробник: полный вариант D (45 мин).", en: "Practice: full variant D (45 min).", uz: "Sinov: to'liq D variant (45 daqiqa)." } },
+  { day: 13, critical: false, text: { ru: "Работа над ошибками всех вариантов.", en: "Review mistakes across all variants.", uz: "Barcha variantlar xatolari ustida ishlash." } },
+  { day: 14, critical: false, text: { ru: "Отдых перед тестированием.", en: "Rest before the test.", uz: "Testdan oldin dam olish." } }
+];
+
+/* ============================================================
+   QUIZ DATABASE — 4 VARIANTS
+============================================================ */
+const VARIANTS = ["A", "B", "C", "D"];
+
+const quizDB = {
+  A: [
+    { id: 5, level: "short", task: 5, type: "single", section: "listening",
+      options: ["1) наступили каникулы", "2) получила пятёрку", "3) окончились уроки", "4) встретила подружку"], correct: 1,
+      ru: { text: "Дважды прослушай текст:\n\n«Галя шла из школы радостная, потому что получила пятёрку на уроке. Девочка открыла дверь и хотела рассказать об этом маме. Но мама пригрозила пальцем и прошептала: – Тихо, Галя, бабушка отдыхает. Галя тихо подошла к столу, положила портфель. Пообедала, села учить уроки. Читала книжку про себя. Открылась дверь, пришла Оля, подружка Гали. Она громко сказала: – Галя… Галя прошептала: – Тихо, Оля, бабушка отдыхает. Сели девочки к столу и рассматривают рисунки. А из бабушкиных глаз выкатились слезинки. Когда бабушка встала, Галя спросила: – Бабушка, почему ты плакала? Бабушка улыбнулась. В её глазах светилась радость.»\n\nПочему Галя шла из школы радостная?",
+        info: "Задание 5 проверяет понимание прослушанного текста.", explanation: "В тексте: «...потому что получила пятёрку на уроке». Ответ: 2." },
+      en: { text: "Listen twice. Why was Galya happy?", info: "Task 5 checks listening.", explanation: "Text: 'got an A'. Answer: 2." } },
+    { id: 6, level: "short", task: 6, type: "single", section: "listening",
+      options: ["1) Галя медленно открывала дверь.", "2) Галя громко смеялась.", "3) Галя хотела что-то сказать.", "4) Галя позвала в гости подружку."], correct: 2,
+      ru: { text: "Почему мама пригрозила Гале пальцем?", info: "Задание 6 проверяет детали текста.", explanation: "Мама пригрозила, потому что Галя хотела громко рассказать о пятёрке. Ответ: 3." },
+      en: { text: "Why did mom shake her finger?", info: "Task 6 checks details.", explanation: "Answer: 3." } },
+    { id: 7, level: "short", task: 7, type: "single", section: "listening",
+      options: ["1) Галя ушла гулять.", "2) Галя попросила подружку говорить тише.", "3) Галя дала бабушке лекарство.", "4) Галя читала книгу бабушке."], correct: 1,
+      ru: { text: "Как Галя проявляла заботу о бабушке?", info: "Задание 7 проверяет детали.", explanation: "Галя сказала Оле: «Тихо, Оля, бабушка отдыхает». Ответ: 2." },
+      en: { text: "How did Galya show care?", info: "Task 7 checks details.", explanation: "Answer: 2." } },
+    { id: 8, level: "short", task: 8, type: "single", section: "listening",
+      options: ["1) Бабушку рассмешили картинки.", "2) Бабушка была рада заботе внучки.", "3) Вопрос Гали показался смешным.", "4) Бабушка не расслышала вопрос."], correct: 1,
+      ru: { text: "Почему бабушка улыбнулась?", info: "Задание 8 проверяет главную мысль.", explanation: "Бабушка плакала от радости за заботу Гали. Ответ: 2." },
+      en: { text: "Why did grandma smile?", info: "Task 8 checks main idea.", explanation: "Answer: 2." } },
+    { id: 9, level: "short", task: 9, type: "match", section: "grammar", correctMatch: "лёгким", options: [],
+      ru: { text: "Выбери подходящий антоним к слову тяжёлый и напиши его в предложении на месте пропуска в нужной форме.\n\nМы отправились в путешествие с________________________ рюкзаком и не взяли тяжёлый чемодан.\n\nСлова для выбора: огромный, светлый, лёгкий, новый.",
+        info: "Задание 9 проверяет знание лексики и грамматики.", explanation: "Антоним — «лёгкий». Т.п., м.р.: с лёгким рюкзаком. Ответ: лёгким." },
+      en: { text: "Choose the antonym for 'heavy' in the correct form.", explanation: "Answer: lyogkim." } },
+    { id: 10, level: "short", task: 10, type: "match", section: "grammar", correctMatch: "небе", options: [],
+      ru: { text: "Выбери имя существительное и напиши его в нужной форме.\n\nВ вечернем______________________ появилась первая звёздочка.\n\nСлова для выбора: яркий, небо, красиво, засверкать.",
+        info: "Задание 10 проверяет умение употреблять существительные в падеже.", explanation: "В (чём?) небе. П.п. Ответ: небе." },
+      en: { text: "Choose the noun in the correct form.", explanation: "Answer: nebe." } },
+    { id: 11, level: "short", task: 11, type: "match", section: "grammar", correctMatch: "вызывают", options: [],
+      ru: { text: "Напиши в предложении на месте пропуска глагол в нужной форме.\n\nЖуравли____________________ у людей особую любовь.\n\nСлова для выбора: вызывает, вызываешь, вызываю, вызывают.",
+        info: "Задание 11 проверяет умение употреблять глаголы в нужной форме.", explanation: "Журавли (они) вызывают. Ответ: вызывают." },
+      en: { text: "Write the verb in the correct form.", explanation: "Answer: vyzyvayut." } },
+    { id: 12, level: "short", task: 12, type: "single", section: "grammar",
+      options: ["1) Катя играет с младшей сестрой.", "2) Дедушка расскажи сказку.", "3) Друзья пойдут вечером на рыбалку.", "4) Поезд прибудет с небольшим опозданием."], correct: 1,
+      ru: { text: "Выбери предложение, в котором есть обращение (запятые не расставлены). Выпиши слово, которое является обращением.\n\n1) Катя играет с младшей сестрой.\n2) Дедушка расскажи сказку.\n3) Друзья пойдут вечером на рыбалку.\n4) Поезд прибудет с небольшим опозданием.",
+        info: "Задание 12 проверяет умение находить обращение.", explanation: "«Дедушка, расскажи сказку». Обращение: дедушка. Ответ: 2." },
+      en: { text: "Find the sentence with an address.", explanation: "Answer: 2." } },
+    { id: 13, level: "long", task: 13, type: "long", section: "writing", options: [],
+      ru: { text: "Вставь в слова пропущенные буквы. Перепиши текст полностью.\n\nВо время поездк.. в автобус.. необходимо соблюдать правила. Нельзя отвл..кать в..дителя громкими ра..говорами, ..ткрывать окна и высовывать голову из них. Во время дв..жения надо д..ржаться за пóручни.\n\n(27 слов)",
+        info: "Задание 13 проверяет умение списывать текст.",
+        explanation: "ЭТАЛОН:\nВо время поездки в автобусе необходимо соблюдать правила. Нельзя отвлекать водителя громкими разговорами, открывать окна и высовывать голову из них. Во время движения надо держаться за поручни.\n\nБуквы: И, Е, Е, О, З, О, И, Е." },
+      en: { text: "Insert missing letters. Copy the text.", explanation: "Letters: I, E, E, O, Z, O, I, E." } },
+    { id: 14, level: "long", task: 14, type: "long", section: "writing", options: [],
+      ru: { text: "Допиши текст из задания 13, ответив на вопросы. Объём — не менее 70 слов.\n\n1. Какие ещё существуют правила поведения в автобусе? Приведи не менее двух таких правил.\n2. Почему важно соблюдать правила поведения в общественном транспорте?",
+        info: "Задание 14 проверяет умение строить письменное высказывание.",
+        explanation: "ЭТАЛОН (≥70 слов):\nВ автобусе нельзя громко разговаривать и кричать. Нельзя толкаться и мешать входу и выходу. Нужно уступать место пожилым людям. Нельзя мусорить. Также нельзя отвлекать водителя во время движения.\n\nСоблюдать правила важно, потому что от этого зависит безопасность всех пассажиров. Вежливость в транспорте — уважение к другим людям." },
+      en: { text: "Continue the text. Volume: 70+ words.", explanation: "Answer both questions." } }
+  ],
+  B: [
+    { id: 5, level: "short", task: 5, type: "single", section: "listening",
+      options: ["1) играл в футбол", "2) смотрел телевизор", "3) читал книгу", "4) помогал маме"], correct: 3,
+      ru: { text: "Дважды прослушай текст:\n\n«Миша очень любил читать. Каждый вечер он брал новую книгу и читал до самого сна. Однажды он прочитал рассказ о путешествиях и решил, что станет капитаном. Мама подарила ему большую карту мира. Миша повесил её над кроватью и каждый вечер мечтал о дальних странах.»\n\nЧто Миша любил делать каждый вечер?",
+        info: "Задание 5 проверяет понимание прослушанного текста.", explanation: "В тексте: «Каждый вечер он брал новую книгу и читал». Ответ: 3." },
+      en: { text: "Listen twice. What did Misha like to do every evening?", info: "Task 5.", explanation: "Answer: 3." } },
+    { id: 6, level: "short", task: 6, type: "single", section: "listening",
+      options: ["1) новый велосипед", "2) большую карту мира", "3) книгу о животных", "4) футбольный мяч"], correct: 1,
+      ru: { text: "Что мама подарила Мише?", info: "Задание 6 проверяет детали.", explanation: "Мама подарила большую карту мира. Ответ: 2." },
+      en: { text: "What did mom give Misha?", info: "Task 6.", explanation: "Answer: 2." } },
+    { id: 7, level: "short", task: 7, type: "single", section: "listening",
+      options: ["1) космонавтом", "2) капитаном", "3) врачом", "4) учителем"], correct: 1,
+      ru: { text: "Кем Миша решил стать?", info: "Задание 7 проверяет детали.", explanation: "Миша решил, что станет капитаном. Ответ: 2." },
+      en: { text: "What did Misha decide to become?", info: "Task 7.", explanation: "Answer: 2." } },
+    { id: 8, level: "short", task: 8, type: "single", section: "listening",
+      options: ["1) Миша потерял карту.", "2) Миша мечтал о путешествиях.", "3) Мама запретила читать.", "4) Миша забыл о мечте."], correct: 1,
+      ru: { text: "О чём Миша мечтал каждый вечер?", info: "Задание 8 проверяет главную мысль.", explanation: "Миша мечтал о дальних странах. Ответ: 2." },
+      en: { text: "What did Misha dream about?", info: "Task 8.", explanation: "Answer: 2." } },
+    { id: 9, level: "short", task: 9, type: "match", section: "grammar", correctMatch: "старым", options: [],
+      ru: { text: "Выбери подходящий антоним к слову новый и напиши его в предложении на месте пропуска в нужной форме.\n\nМы нашли________________________ дом и решили в нём поселиться.\n\nСлова для выбора: красивый, старый, высокий, деревянный.",
+        info: "Задание 9 проверяет знание антонимов.", explanation: "Антоним — «старый». Т.п., м.р.: со старым домом. Ответ: старым." },
+      en: { text: "Choose the antonym for 'new'.", explanation: "Answer: starym." } },
+    { id: 10, level: "short", task: 10, type: "match", section: "grammar", correctMatch: "реке", options: [],
+      ru: { text: "Выбери имя существительное и напиши его в предложении в нужной форме.\n\nЛетом мы купались в тёплой______________________.\n\nСлова для выбора: быстрый, река, весело, шуметь.",
+        info: "Задание 10 проверяет падежи.", explanation: "В (чём?) реке. П.п. Ответ: реке." },
+      en: { text: "Choose the noun in the correct form.", explanation: "Answer: reke." } },
+    { id: 11, level: "short", task: 11, type: "match", section: "grammar", correctMatch: "поют", options: [],
+      ru: { text: "Напиши в предложении на месте пропуска глагол в нужной форме.\n\nПтицы____________________ красивые песни.\n\nСлова для выбора: поёт, поёшь, пою, поют.",
+        info: "Задание 11 проверяет формы глаголов.", explanation: "Птицы (они) поют. Ответ: поют." },
+      en: { text: "Write the verb in the correct form.", explanation: "Answer: poyut." } },
+    { id: 12, level: "short", task: 12, type: "single", section: "grammar",
+      options: ["1) Маша читает книгу.", "2) Мама купила хлеб.", "3) Бабушка испеки пирог.", "4) Кот спит на диване."], correct: 2,
+      ru: { text: "Выбери предложение с обращением (запятые не расставлены).\n\n1) Маша читает книгу.\n2) Мама купила хлеб.\n3) Бабушка испеки пирог.\n4) Кот спит на диване.",
+        info: "Задание 12 проверяет обращения.", explanation: "«Бабушка, испеки пирог». Обращение: бабушка. Ответ: 3." },
+      en: { text: "Find the sentence with an address.", explanation: "Answer: 3." } },
+    { id: 13, level: "long", task: 13, type: "long", section: "writing", options: [],
+      ru: { text: "Вставь пропущенные буквы. Перепиши текст полностью.\n\nВ лесу растёт высокая с..сна. Под ней ж..вёт еж.. . Дети соб..рают грибы и яг..ды. В лесу нужно вести себя тихо, чтобы не пугать птиц.\n\n(25 слов)",
+        info: "Задание 13 проверяет списывание.",
+        explanation: "ЭТАЛОН:\nВ лесу растёт высокая сосна. Под ней живёт ёж. Дети собирают грибы и ягоды. В лесу нужно вести себя тихо, чтобы не пугать птиц.\n\nБуквы: о, и, ё, и, о." },
+      en: { text: "Insert missing letters.", explanation: "Answer: o, i, yo, i, o." } },
+    { id: 14, level: "long", task: 14, type: "long", section: "writing", options: [],
+      ru: { text: "Допиши текст из задания 13, ответив на вопросы. Объём — не менее 70 слов.\n\n1. Какие правила поведения в лесу ты знаешь? Приведи не менее двух.\n2. Почему важно беречь природу?",
+        info: "Задание 14 проверяет письменное высказывание.",
+        explanation: "ЭТАЛОН (≥70 слов):\nВ лесу нельзя громко кричать, чтобы не пугать животных. Нельзя разбрасывать мусор. Нельзя разорять птичьи гнёзда и муравейники. Нельзя ломать деревья и кусты. Нельзя разжигать костёр без взрослых.\n\nБеречь природу важно, потому что лес — дом для животных и растений. От леса зависит чистый воздух и вода. Если каждый будет соблюдать правила, лес сохранится для будущих поколений." },
+      en: { text: "Continue the text. Volume: 70+ words.", explanation: "Answer both questions." } }
+  ],
+  C: [
+    { id: 5, level: "short", task: 5, type: "single", section: "listening",
+      options: ["1) купаться", "2) плавать с дельфинами", "3) строить замки", "4) играть в волейбол"], correct: 2,
+      ru: { text: "Дважды прослушай текст:\n\n«Летом Катя отдыхала на море. Каждый день она строила замки из песка. Однажды она увидела дельфинов и очень захотела с ними поплавать. Мама сказала, что дельфины добрые и умные. Катя подружилась с одним дельфином и потом весь год вспоминала об этом.»\n\nЧто Катя захотела сделать?",
+        info: "Задание 5 проверяет понимание.", explanation: "Катя захотела поплавать с дельфинами. Ответ: 2." },
+      en: { text: "What did Katya want to do?", info: "Task 5.", explanation: "Answer: 2." } },
+    { id: 6, level: "short", task: 6, type: "single", section: "listening",
+      options: ["1) горах", "2) на море", "3) в деревне", "4) в лагере"], correct: 1,
+      ru: { text: "Где Катя отдыхала летом?", info: "Задание 6 проверяет детали.", explanation: "Катя отдыхала на море. Ответ: 2." },
+      en: { text: "Where did Katya rest?", info: "Task 6.", explanation: "Answer: 2." } },
+    { id: 7, level: "short", task: 7, type: "single", section: "listening",
+      options: ["1) из песка", "2) из камней", "3) из дерева", "4) из бумаги"], correct: 0,
+      ru: { text: "Из чего Катя строила замки?", info: "Задание 7 проверяет детали.", explanation: "Катя строила замки из песка. Ответ: 1." },
+      en: { text: "What did Katya build castles from?", info: "Task 7.", explanation: "Answer: 1." } },
+    { id: 8, level: "short", task: 8, type: "single", section: "listening",
+      options: ["1) Дельфины опасны.", "2) Дельфины добрые и умные.", "3) Дельфины живут на суше.", "4) Дельфины не любят людей."], correct: 1,
+      ru: { text: "Что мама сказала о дельфинах?", info: "Задание 8 проверяет главную мысль.", explanation: "Мама сказала, что дельфины добрые и умные. Ответ: 2." },
+      en: { text: "What did mom say about dolphins?", info: "Task 8.", explanation: "Answer: 2." } },
+    { id: 9, level: "short", task: 9, type: "match", section: "grammar", correctMatch: "холодной", options: [],
+      ru: { text: "Выбери антоним к слову тёплый и напиши его в нужной форме.\n\nМы искупались в________________________ воде и быстро вышли на берег.\n\nСлова для выбора: грязный, холодный, солёный, глубокий.",
+        info: "Задание 9 — антонимы.", explanation: "Антоним — «холодный». Ж.р., П.п.: в холодной воде. Ответ: холодной." },
+      en: { text: "Choose the antonym for 'warm'.", explanation: "Answer: kholodnoy." } },
+    { id: 10, level: "short", task: 10, type: "match", section: "grammar", correctMatch: "школе", options: [],
+      ru: { text: "Выбери имя существительное и напиши его в предложении в нужной форме.\n\nДети учатся в новой______________________.\n\nСлова для выбора: красивый, школа, весело, учиться.",
+        info: "Задание 10 — падежи.", explanation: "В (чём?) школе. П.п. Ответ: школе." },
+      en: { text: "Choose the noun in the correct form.", explanation: "Answer: shkole." } },
+    { id: 11, level: "short", task: 11, type: "match", section: "grammar", correctMatch: "читает", options: [],
+      ru: { text: "Напиши глагол в нужной форме.\n\nБабушка____________________ интересную книгу.\n\nСлова для выбора: читает, читаешь, читаю, читают.",
+        info: "Задание 11 — формы глаголов.", explanation: "Бабушка (она) читает. Ответ: читает." },
+      en: { text: "Write the verb in the correct form.", explanation: "Answer: chitaet." } },
+    { id: 12, level: "short", task: 12, type: "single", section: "grammar",
+      options: ["1) Кот спит.", "2) Мама, я пришёл.", "3) Дети играют.", "4) Птицы летят."], correct: 1,
+      ru: { text: "Найди предложение с обращением.\n\n1) Кот спит.\n2) Мама, я пришёл.\n3) Дети играют.\n4) Птицы летят.",
+        info: "Задание 12 — обращения.", explanation: "«Мама, я пришёл». Обращение: мама. Ответ: 2." },
+      en: { text: "Find the sentence with an address.", explanation: "Answer: 2." } },
+    { id: 13, level: "long", task: 13, type: "long", section: "writing", options: [],
+      ru: { text: "Вставь пропущенные буквы. Перепиши текст.\n\nНаступила з..ма. На улице идёт сильный сне.. . Дети лепят сн..говика и катаются на санках. Зимой нужно тепло од..ваться, чтобы не заб..леть.\n\n(24 слова)",
+        info: "Задание 13 — списывание.",
+        explanation: "ЭТАЛОН:\nНаступила зима. На улице идёт сильный снег. Дети лепят снеговика и катаются на санках. Зимой нужно тепло одеваться, чтобы не заболеть.\n\nБуквы: и, г, е, е, о." },
+      en: { text: "Insert missing letters.", explanation: "Answer: i, g, e, e, o." } },
+    { id: 14, level: "long", task: 14, type: "long", section: "writing", options: [],
+      ru: { text: "Допиши текст из задания 13, ответив на вопросы. Объём — не менее 70 слов.\n\n1. Какие зимние игры ты знаешь? Назови не менее двух.\n2. Почему важно тепло одеваться зимой?",
+        info: "Задание 14 — высказывание.",
+        explanation: "ЭТАЛОН (≥70 слов):\nЗимой можно кататься на санках, лыжах и коньках. Дети играют в снежки и лепят снеговиков. Можно строить снежные крепости. Некоторые катаются на сноуборде.\n\nТепло одеваться зимой важно, потому что на улице мороз. Если одеться легко, можно простудиться и заболеть. Тёплая одежда защищает от ветра и холода. Лучше носить шапку, шарф, варежки и тёплые сапоги." },
+      en: { text: "Continue the text. Volume: 70+ words.", explanation: "Answer both questions." } }
+  ],
+  D: [
+    { id: 5, level: "short", task: 5, type: "single", section: "listening",
+      options: ["1) кошку", "2) собаку", "3) попугая", "4) рыбку"], correct: 1,
+      ru: { text: "Дважды прослушай текст:\n\n«У Ани был маленький щенок по имени Дружок. Каждое утро Аня выводила его гулять. Щенок быстро бегал и весело лаял. Однажды Дружок спас Аню от большой собаки. С тех пор они стали настоящими друзьями.»\n\nКто был у Ани?",
+        info: "Задание 5.", explanation: "У Ани был щенок (собака). Ответ: 2." },
+      en: { text: "Who did Anya have?", info: "Task 5.", explanation: "Answer: 2." } },
+    { id: 6, level: "short", task: 6, type: "single", section: "listening",
+      options: ["1) Дружок", "2) Шарик", "3) Бобик", "4) Рекс"], correct: 0,
+      ru: { text: "Как звали щенка?", info: "Задание 6.", explanation: "Щенка звали Дружок. Ответ: 1." },
+      en: { text: "What was the puppy's name?", info: "Task 6.", explanation: "Answer: 1." } },
+    { id: 7, level: "short", task: 7, type: "single", section: "listening",
+      options: ["1) от кошки", "2) от большой собаки", "3) от дождя", "4) от машины"], correct: 1,
+      ru: { text: "От кого Дружок спас Аню?", info: "Задание 7.", explanation: "Дружок спас Аню от большой собаки. Ответ: 2." },
+      en: { text: "Who did Druzhok save Anya from?", info: "Task 7.", explanation: "Answer: 2." } },
+    { id: 8, level: "short", task: 8, type: "single", section: "listening",
+      options: ["1) Дружок был трусливым.", "2) Аня и Дружок стали друзьями.", "3) Аня боялась щенка.", "4) Щенок убежал."], correct: 1,
+      ru: { text: "Какая главная мысль текста?", info: "Задание 8.", explanation: "Аня и Дружок стали настоящими друзьями. Ответ: 2." },
+      en: { text: "What is the main idea?", info: "Task 8.", explanation: "Answer: 2." } },
+    { id: 9, level: "short", task: 9, type: "match", section: "grammar", correctMatch: "сладкий", options: [],
+      ru: { text: "Выбери антоним к слову горький и напиши его в нужной форме.\n\nМама дала нам________________________ чай с мёдом.\n\nСлова для выбора: горячий, сладкий, крепкий, ароматный.",
+        info: "Задание 9 — антонимы.", explanation: "Антоним — «сладкий». В.п., м.р.: сладкий чай. Ответ: сладкий." },
+      en: { text: "Choose the antonym for 'bitter'.", explanation: "Answer: sladkiy." } },
+    { id: 10, level: "short", task: 10, type: "match", section: "grammar", correctMatch: "столе", options: [],
+      ru: { text: "Выбери имя существительное и напиши его в нужной форме.\n\nКнига лежит на письменном______________________.\n\nСлова для выбора: большой, стол, красиво, лежать.",
+        info: "Задание 10 — падежи.", explanation: "На (чём?) столе. П.п. Ответ: столе." },
+      en: { text: "Choose the noun in the correct form.", explanation: "Answer: stole." } },
+    { id: 11, level: "short", task: 11, type: "match", section: "grammar", correctMatch: "бежит", options: [],
+      ru: { text: "Напиши глагол в нужной форме.\n\nМальчик быстро____________________ по дороге.\n\nСлова для выбора: бежит, бежишь, бегу, бегут.",
+        info: "Задание 11 — формы глаголов.", explanation: "Мальчик (он) бежит. Ответ: бежит." },
+      en: { text: "Write the verb in the correct form.", explanation: "Answer: bezhit." } },
+    { id: 12, level: "short", task: 12, type: "single", section: "grammar",
+      options: ["1) Дети играют в парке.", "2) Солнце светит ярко.", "3) Аня, помоги мне!", "4) Птицы поют."], correct: 2,
+      ru: { text: "Найди предложение с обращением.\n\n1) Дети играют в парке.\n2) Солнце светит ярко.\n3) Аня, помоги мне!\n4) Птицы поют.",
+        info: "Задание 12 — обращения.", explanation: "«Аня, помоги мне!». Обращение: Аня. Ответ: 3." },
+      en: { text: "Find the sentence with an address.", explanation: "Answer: 3." } },
+    { id: 13, level: "long", task: 13, type: "long", section: "writing", options: [],
+      ru: { text: "Вставь пропущенные буквы. Перепиши текст.\n\nВ наш..м город.. есть красивый парк. Там растут высокие д..ревья и цв..тут цветы. Дети любят гулять по аллеям и к..рмить птиц. Парк — любимое место ж..телей.\n\n(28 слов)",
+        info: "Задание 13 — списывание.",
+        explanation: "ЭТАЛОН:\nВ нашем городе есть красивый парк. Там растут высокие деревья и цветут цветы. Дети любят гулять по аллеям и кормить птиц. Парк — любимое место жителей.\n\nБуквы: е, е, е, е, о, и." },
+      en: { text: "Insert missing letters.", explanation: "Answer: e, e, e, e, o, i." } },
+    { id: 14, level: "long", task: 14, type: "long", section: "writing", options: [],
+      ru: { text: "Допиши текст из задания 13, ответив на вопросы. Объём — не менее 70 слов.\n\n1. Какие места в твоём городе ты любишь посещать? Назови не менее двух.\n2. Почему важно беречь парки и скверы?",
+        info: "Задание 14 — высказывание.",
+        explanation: "ЭТАЛОН (≥70 слов):\nЯ люблю гулять в парке и в библиотеке. В парке можно кататься на велосипеде, играть с друзьями и дышать свежим воздухом. В библиотеке я читаю книги и узнаю много нового. Ещё мне нравится ходить в музей и в кино.\n\nБеречь парки и скверы важно, потому что там растут деревья и живут птицы. Чистый воздух нужен всем. Если каждый будет убирать за собой мусор, парк останется красивым и приятным для отдыха." },
+      en: { text: "Continue the text. Volume: 70+ words.", explanation: "Answer both questions." } }
+  ]
+};
+
+/* ORAL TASKS per variant */
+const oralDB = {
+  A: [
+    { n: 1, max: 1, ru: { q1: "Задание 1. Диалог. Дай полные ответы на вопросы:\n1) Как ты помогаешь взрослым дома?\n2) Какую работу по дому ты любишь делать?\n3) Должны ли дети помогать взрослым и почему?\n4) Какие свойства характера развивают домашние поручения?", explanation: "ЭТАЛОН:\n1) Я помогаю маме мыть посуду и выносить мусор.\n2) Больше всего я люблю поливать цветы.\n3) Да, дети должны помогать, это забота о близких.\n4) Домашние поручения развивают ответственность и трудолюбие." }, en: { q1: "Task 1. Dialogue about helping at home.", explanation: "MODEL: I help wash dishes..." } },
+    { n: 2, max: 2, ru: { q1: "Задание 2. Монолог. Рассмотри фотографию (мама с дочкой сажают цветы). Опиши в 5+ предложениях.", explanation: "ЭТАЛОН:\nНа фото мама и дочка. Они сажают цветы в саду. Мама держит лейку. Девочка помогает ей. У обеих радостное настроение." }, en: { q1: "Task 2. Monologue (5+ sentences).", explanation: "MODEL: Mom and daughter in garden..." } },
+    { n: 3, max: 3, ru: { q1: "Задание 3. Чтение вслух.\n\n«Великий русский князь Ярослав Мудрый был образованным правителем, много читал. Он считал образованность народа делом, которое укрепляет государство. Просвещение всегда было важной задачей на Руси. Поэтому Ярослав налаживал связи со всеми странами, старался перенять все их достижения. В его правление появились книжники. Открывались школы. Ярослав основал публичную библиотеку.»", explanation: "КРИТЕРИИ: интонация, целые слова, ≤2 искажений." }, en: { q1: "Task 3. Read aloud.", explanation: "CRITERIA: intonation, whole words." } },
+    { n: 4, max: 4, ru: { q1: "Задание 4. Пересказ по плану.\n\nПлан:\n1. Ярослав Мудрый — образованный правитель.\n2. Просвещение на Руси.\n3. Основание публичной библиотеки.", explanation: "ЭТАЛОН:\nЯрослав Мудрый ценил знания, много читал. При нём открывались школы, появились книжники. Он основал публичную библиотеку в Софийском соборе." }, en: { q1: "Task 4. Retell by plan.", explanation: "MODEL: 3 micro-topics." } }
+  ],
+  B: [
+    { n: 1, max: 1, ru: { q1: "Задание 1. Диалог:\n1) Какие книги ты любишь читать?\n2) Кто твой любимый писатель?\n3) Почему важно читать книги?\n4) Какую книгу ты посоветуешь другу?", explanation: "ЭТАЛОН:\n1) Я люблю читать приключенческие книги.\n2) Мой любимый писатель — Пушкин.\n3) Чтение развивает ум и фантазию.\n4) Я советую «Приключения Тома Сойера»." }, en: { q1: "Task 1. Dialogue about books.", explanation: "MODEL." } },
+    { n: 2, max: 2, ru: { q1: "Задание 2. Монолог по фото (мальчик читает книгу в библиотеке). 5+ предложений.", explanation: "ЭТАЛОН:\nНа фото мальчик в библиотеке. Он читает книгу. Вокруг много полок с книгами. Мальчик сидит за столом. Ему интересно читать." }, en: { q1: "Task 2. Monologue (5+ sentences).", explanation: "MODEL." } },
+    { n: 3, max: 3, ru: { q1: "Задание 3. Чтение вслух.\n\n«Книга — лучший друг человека. С древних времён люди записывали свои знания в книги. В книгах хранится мудрость многих поколений. Чтение помогает нам учиться, мечтать и понимать мир. Поэтому библиотеки — это настоящие сокровищницы знаний.»", explanation: "КРИТЕРИИ: интонация, целые слова, ≤2 искажений." }, en: { q1: "Task 3. Read aloud.", explanation: "CRITERIA." } },
+    { n: 4, max: 4, ru: { q1: "Задание 4. Пересказ по плану.\n\nПлан:\n1. Книга — друг человека.\n2. Знания в книгах.\n3. Библиотеки — сокровищницы.", explanation: "ЭТАЛОН:\nКнига — лучший друг. В книгах хранится мудрость. Библиотеки — сокровищницы знаний." }, en: { q1: "Task 4. Retell by plan.", explanation: "MODEL." } }
+  ],
+  C: [
+    { n: 1, max: 1, ru: { q1: "Задание 1. Диалог:\n1) Как ты проводишь летние каникулы?\n2) Куда ты любишь ездить?\n3) Что тебе нравится делать на море?\n4) Почему лето — твоё любимое время года?", explanation: "ЭТАЛОН:\n1) Летом я отдыхаю и гуляю.\n2) Я люблю ездить на море.\n3) Мне нравится купаться и загорать.\n4) Летом тепло и весело." }, en: { q1: "Task 1. Dialogue about summer.", explanation: "MODEL." } },
+    { n: 2, max: 2, ru: { q1: "Задание 2. Монолог по фото (дети на пляже строят замок). 5+ предложений.", explanation: "ЭТАЛОН:\nНа фото дети на пляже. Они строят замок из песка. Светит яркое солнце. Дети весело играют. Море тихое и спокойное." }, en: { q1: "Task 2. Monologue.", explanation: "MODEL." } },
+    { n: 3, max: 3, ru: { q1: "Задание 3. Чтение вслух.\n\n«Лето — прекрасное время года. Всё вокруг зеленеет и цветёт. Птицы поют с самого утра. Дети отдыхают на каникулах. Летом можно купаться, загорать и путешествовать. Многие семьи едут на море или в деревню.»", explanation: "КРИТЕРИИ." }, en: { q1: "Task 3. Read aloud.", explanation: "CRITERIA." } },
+    { n: 4, max: 4, ru: { q1: "Задание 4. Пересказ по плану.\n\nПлан:\n1. Лето — прекрасное время.\n2. Каникулы и отдых.\n3. Путешествия семей.", explanation: "ЭТАЛОН:\nЛето — красивое время года. Дети на каникулах. Семьи едут на море." }, en: { q1: "Task 4. Retell by plan.", explanation: "MODEL." } }
+  ],
+  D: [
+    { n: 1, max: 1, ru: { q1: "Задание 1. Диалог:\n1) Есть ли у тебя домашнее животное?\n2) Как ты заботишься о нём?\n3) Почему важно заботиться о животных?\n4) Какое животное ты хотел бы иметь?", explanation: "ЭТАЛОН:\n1) Да, у меня есть кот.\n2) Я его кормлю и играю с ним.\n3) Животные — наши друзья, им нужна забота.\n4) Я хотел бы собаку." }, en: { q1: "Task 1. Dialogue about pets.", explanation: "MODEL." } },
+    { n: 2, max: 2, ru: { q1: "Задание 2. Монолог по фото (девочка с собакой в парке). 5+ предложений.", explanation: "ЭТАЛОН:\nНа фото девочка с собакой. Они гуляют в парке. Собака весёлая и игривая. Девочка держит поводок. Им хорошо вместе." }, en: { q1: "Task 2. Monologue.", explanation: "MODEL." } },
+    { n: 3, max: 3, ru: { q1: "Задание 3. Чтение вслух.\n\n«Домашние животные — верные друзья человека. Собаки охраняют дом, кошки ловят мышей, попугаи радуют нас своими песнями. Животные чувствуют наше настроение и всегда готовы поддержать. Поэтому важно заботиться о них и не обижать.»", explanation: "КРИТЕРИИ." }, en: { q1: "Task 3. Read aloud.", explanation: "CRITERIA." } },
+    { n: 4, max: 4, ru: { q1: "Задание 4. Пересказ по плану.\n\nПлан:\n1. Домашние животные — друзья.\n2. Роль животных в доме.\n3. Забота о животных.", explanation: "ЭТАЛОН:\nЖивотные — верные друзья. Собаки охраняют, кошки ловят мышей. Важно заботиться о них." }, en: { q1: "Task 4. Retell by plan.", explanation: "MODEL." } }
+  ]
+};
+
+/* ============================================================
+   RENDER
+============================================================ */
+function renderStructureCards() {
+  document.getElementById("structureGrid").innerHTML = structureCards.map(card => {
+    const body = card.items ? `<ul class="mini-list">${card.items.map(it => `<li>${escapeHtml(loc(it))}</li>`).join("")}</ul>` : "";
+    return `<article class="card ${card.cardClass}"><span class="tag ${card.tagClass}">${escapeHtml(loc(card.tag))}</span><h3>${escapeHtml(loc(card.title))}</h3>${body}</article>`;
+  }).join("");
+}
+
+function renderChecklist() {
+  document.getElementById("checklistUl").innerHTML = checklistItems.map(item => {
+    const checked = checklistState[item.key] ? "checked" : "";
+    const done = checklistState[item.key] ? "done" : "";
+    return `<li class="check-item ${done}"><input type="checkbox" id="${item.key}" data-key="${item.key}" ${checked} /><label for="${item.key}">${escapeHtml(loc(item.label))}</label></li>`;
+  }).join("");
+}
+
+function renderPlan() {
+  const L = I18N[currentLang];
+  document.getElementById("planGrid").innerHTML = planDays.map(d => `<div class="day ${d.critical ? "critical" : ""}"><b>${escapeHtml(L.dayPrefix)} ${d.day}</b><p>${escapeHtml(loc(d.text))}</p></div>`).join("");
+}
+
+function renderReferences() {
+  const L = I18N[currentLang];
+  document.getElementById("refsGrid").innerHTML = `
+    <div class="card success-card">
+      <h3>${escapeHtml(L.refWrittenCriteria)}</h3>
+      <table class="reference-table">
+        <tr><th>${escapeHtml(L.tableType)}</th><th>${escapeHtml(L.tablePoints)}</th></tr>
+        <tr><td>${escapeHtml(L.refTasks5_12)}</td><td>${escapeHtml(L.refEach0_1)}</td></tr>
+        <tr><td>${escapeHtml(L.refTask13)}</td><td>0–2</td></tr>
+        <tr><td>${escapeHtml(L.refTask14)}</td><td>0–2</td></tr>
+        <tr><td><strong>${escapeHtml(L.refMax)}</strong></td><td><strong>12</strong></td></tr>
+      </table>
+    </div>
+    <div class="card warn-card">
+      <h3>${escapeHtml(L.refOralCriteriaTitle)}</h3>
+      <table class="reference-table">
+        <tr><th>${escapeHtml(L.tableTask)}</th><th>${escapeHtml(L.tablePoints)}</th></tr>
+        <tr><td>${escapeHtml(L.refOral1)}</td><td>0–1</td></tr>
+        <tr><td>${escapeHtml(L.refOral2)}</td><td>0–2</td></tr>
+        <tr><td>${escapeHtml(L.refOral3)}</td><td>0–3</td></tr>
+        <tr><td>${escapeHtml(L.refOral4)}</td><td>0–4</td></tr>
+        <tr><td><strong>${escapeHtml(L.refMax)}</strong></td><td><strong>10</strong></td></tr>
+      </table>
+    </div>
+    <div class="card danger-card">
+      <h3>${escapeHtml(L.refScaleTitle)}</h3>
+      <table class="reference-table">
+        <tr><th>${escapeHtml(L.tablePoints)}</th><th>${escapeHtml(L.tableResult)}</th></tr>
+        <tr><td>20–22</td><td>${escapeHtml(L.refPass)}</td></tr>
+        <tr><td>0–19</td><td>${escapeHtml(L.refFail)}</td></tr>
+      </table>
+      <p style="font-size:11px;margin-top:8px;color:var(--muted);">${escapeHtml(L.refOralNote)}</p>
+    </div>`;
+}
+
+function renderOralCriteria() {
+  const L = I18N[currentLang];
+  const box = document.getElementById("oralCriteriaBlock");
+  if (!box) return;
+  box.innerHTML = `<strong>${escapeHtml(L.oralCriteria)}</strong>${L.oralCriteriaBody || ""}`;
+}
+
+function renderExamTips() {
+  const L = I18N[currentLang];
+  const list = document.getElementById("examTipsList");
+  if (!list) return;
+  list.innerHTML = (L.examTips || []).map(t => `<li>${t}</li>`).join("");
+}
+
+function renderVariantButtons() {
+  document.getElementById("variantButtons").innerHTML = VARIANTS.map(v =>
+    `<button class="variant-btn ${v === currentVariant ? "active" : ""}" onclick="setVariant('${v}')">${v}</button>`
+  ).join("");
+}
+
+function levelLabel(level) {
+  const L = I18N[currentLang];
+  if (level === "short") return L.levelShort;
+  if (level === "long") return L.levelLong;
+  return level;
+}
+
+function sourceLabel(q) {
+  const L = I18N[currentLang];
+  const tpl = (q.level === "short" ? L.sourceShort : L.sourceLong) || "ФИПИ 2026, задание {task}";
+  return tpl.replace("{task}", q.task);
+}
+
+function isQuestionAnswered(q) {
+  const a = getAnswer(q.id);
+  if (q.type === "single") return typeof a === "string" && q.options.includes(a);
+  if (q.type === "match") return typeof a === "string" && a.length > 0;
+  if (q.type === "long") return !!a;
+  return false;
+}
+
+function isQuestionCorrect(q) {
+  const a = getAnswer(q.id);
+  if (q.type === "single") return typeof a === "string" && a === q.options[q.correct];
+  if (q.type === "match") { if (!a) return false; return normalizeInput(a) === normalizeInput(q.correctMatch); }
+  return false;
+}
+
+function renderQuestions() {
+  const container = document.getElementById("quizContainer");
+  const L = I18N[currentLang];
+  const allQuiz = quizDB[currentVariant] || [];
+  let quiz = allQuiz;
+
+  if (currentMode === "review") {
+    quiz = allQuiz.filter(q => isQuestionAnswered(q) && !isQuestionCorrect(q));
+    if (quiz.length === 0) {
+      container.innerHTML = `<div class="summary"><p style="margin:0;font-size:20px;">${escapeHtml(L.reviewEmpty)}</p><p style="color:var(--muted);margin:8px 0 0;">${escapeHtml(L.reviewEmptyHint)}</p></div>`;
+      updateFilterLabels(allQuiz);
+      updateStats();
+      updateSummary();
+      return;
+    }
+  }
+
+  container.innerHTML = "";
+
+  quiz.forEach(q => {
+    const block = document.createElement("div");
+    block.className = "question-block";
+    block.id = "q" + q.id;
+    block.dataset.section = q.section;
+
+    let trainerHtml = "";
+    const saved = getAnswer(q.id);
+
+    if (q.type === "single") {
+      let opts = "";
+      q.options.forEach((opt, idx) => {
+        opts += `<button class="option" data-q="${q.id}" data-idx="${idx}" data-value="${escapeHtml(opt)}" onclick="handleAnswer(${q.id}, ${idx})">${escapeHtml(opt)}</button>`;
+      });
+      trainerHtml = `<div class="options" id="options-${q.id}">${opts}</div>`;
+    } else if (q.type === "match") {
+      trainerHtml = `<div class="match-input-row"><input type="text" id="match-${q.id}" maxlength="60" placeholder="${escapeHtml(L.matchPlaceholder)}" value="${escapeHtml(saved || "")}" /><button class="btn small" onclick="handleMatch(${q.id})">${escapeHtml(L.matchCheck)}</button></div>`;
+    } else if (q.type === "long") {
+      trainerHtml = `<div class="writing-area"><textarea id="solution_${q.id}" data-qid="${q.id}" placeholder="${escapeHtml(L.longPlaceholder)}">${escapeHtml(saved || "")}</textarea><div class="word-count" id="wc-${q.id}"></div></div><div style="margin-top:10px;"><button class="btn small secondary" onclick="toggleSolution(${q.id})">${escapeHtml(L.showSolution)}</button></div>`;
+    }
+
+    const text = fieldOrDefault(q, "text");
+    const info = fieldOrDefault(q, "info");
+
+    block.innerHTML = `<div class="q-number">${escapeHtml(levelLabel(q.level))}, ${escapeHtml(L.taskWord)} ${q.task}</div><div class="q-part"><span class="q-part-label">${escapeHtml(L.questionLabel1)}</span><div class="q-text">${escapeHtml(text)}</div></div><div class="q-info"><span class="q-part-label" style="color:var(--accent);">${escapeHtml(L.questionLabel2)}</span><p style="margin:0;">${escapeHtml(info)}</p></div><div class="q-part"><span class="q-trainer-label">${escapeHtml(L.questionLabel3)}</span>${trainerHtml}</div><div id="result-${q.id}"></div>`;
+    container.appendChild(block);
+  });
+
+  container.querySelectorAll("textarea[data-qid]").forEach(ta => {
+    const qid = parseInt(ta.dataset.qid, 10);
+    updateWordCount(qid, ta.value);
+    ta.addEventListener("input", e => {
+      setAnswer(qid, e.target.value);
+      updateWordCount(qid, e.target.value);
+      updateStats(); updateSummary();
+    });
+  });
+
+  quiz.forEach(q => {
+    const saved = getAnswer(q.id);
+    if (q.type === "single" && typeof saved === "string" && q.options.includes(saved)) {
+      applyAnswerVisual(q, saved);
+      if (currentMode === "training" || currentMode === "review") showResult(q, saved);
+    }
+    if (q.type === "match") {
+      const s = getAnswer(q.id);
+      if (s) { if (currentMode === "training" || currentMode === "review") showMatchResult(q, s); }
+    }
+  });
+
+  updateFilterLabels(quiz);
+  applyFilter(quiz);
+  updateStats();
+  updateSummary();
+}
+
+function updateWordCount(qid, text) {
+  const el = document.getElementById("wc-" + qid);
+  if (!el) return;
+  const L = I18N[currentLang];
+  const count = (text || "").trim().split(/\s+/).filter(Boolean).length;
+  el.textContent = `${L.wordCountLabel} ${count} / ${L.wordCountMin}`;
+  el.classList.toggle("ok", count >= 70);
+}
+
+function handleAnswer(qId, selectedIdx) {
+  const quiz = quizDB[currentVariant];
+  const q = quiz.find(item => item.id === qId);
+  if (!q) return;
+  const existing = getAnswer(qId);
+  if (existing !== undefined && currentMode !== "review") return;
+  const selectedValue = q.options[selectedIdx];
+  setAnswer(qId, selectedValue);
+  applyAnswerVisual(q, selectedValue);
+  showResult(q, selectedValue);
+  updateStats(); updateSummary();
+}
+
+function normalizeInput(str) { return String(str || "").trim().toLowerCase().replace(/ё/g, "е").replace(/[''`´]/g, "").replace(/[\s,;.\-–—]/g, ""); }
+
+function handleMatch(qId) {
+  const quiz = quizDB[currentVariant];
+  const q = quiz.find(item => item.id === qId);
+  if (!q) return;
+  const input = document.getElementById("match-" + qId);
+  const value = normalizeInput(input.value);
+  setAnswer(qId, value);
+  showMatchResult(q, value);
+  updateStats(); updateSummary();
+}
+
+function showMatchResult(q, value) {
+  const resultBox = document.getElementById("result-" + q.id);
+  if (!resultBox) return;
+  const L = I18N[currentLang];
+  const isCorrect = normalizeInput(value) === normalizeInput(q.correctMatch);
+  const explanation = fieldOrDefault(q, "explanation");
+  resultBox.innerHTML = `<div class="result-block ${isCorrect ? "correct" : "wrong"}"><div class="verdict ${isCorrect ? "correct" : "wrong"}">${escapeHtml(isCorrect ? L.resultCorrect : L.resultWrong)}</div><div class="result-row"><strong>${escapeHtml(L.correctAnswer)}</strong> ${escapeHtml(q.correctMatch)}</div><div class="result-row"><strong>${escapeHtml(L.explanation)}</strong> ${escapeHtml(explanation).replace(/\n/g, "<br/>")}</div><div class="source-row"><strong>${escapeHtml(L.source)}</strong> ${escapeHtml(sourceLabel(q))}</div></div>`;
+}
+
+function toggleSolution(qId) {
+  const quiz = quizDB[currentVariant];
+  const q = quiz.find(item => item.id === qId);
+  if (!q) return;
+  const resultBox = document.getElementById("result-" + qId);
+  const L = I18N[currentLang];
+  const isHidden = !resultBox.innerHTML || resultBox.innerHTML.trim() === "";
+  const explanation = fieldOrDefault(q, "explanation");
+  if (isHidden) {
+    resultBox.innerHTML = `<div class="result-block correct"><div class="verdict correct">📖 ${escapeHtml(L.explanation)}</div><div class="result-row" style="white-space:pre-wrap;">${escapeHtml(explanation)}</div></div>`;
+  } else {
+    resultBox.innerHTML = "";
+  }
+}
+
+function applyAnswerVisual(q, selectedValue) {
+  const optionsBox = document.getElementById("options-" + q.id);
+  if (!optionsBox) return;
+  const correctValue = q.options[q.correct];
+  optionsBox.querySelectorAll(".option").forEach(btn => {
+    btn.disabled = true;
+    const value = btn.dataset.value;
+    if (value === correctValue) btn.classList.add("correct");
+    if (value === selectedValue && selectedValue !== correctValue) btn.classList.add("wrong");
+  });
+}
+
+function showResult(q, selectedValue) {
+  const resultBox = document.getElementById("result-" + q.id);
+  if (!resultBox) return;
+  const L = I18N[currentLang];
+  const correctValue = q.options[q.correct];
+  const isCorrect = selectedValue === correctValue;
+  const explanation = fieldOrDefault(q, "explanation");
+  resultBox.innerHTML = `<div class="result-block ${isCorrect ? "correct" : "wrong"}"><div class="verdict ${isCorrect ? "correct" : "wrong"}">${escapeHtml(isCorrect ? L.resultCorrect : L.resultWrong)}</div><div class="result-row"><strong>${escapeHtml(L.correctAnswer)}</strong> ${escapeHtml(correctValue)}</div><div class="result-row"><strong>${escapeHtml(L.explanation)}</strong> ${escapeHtml(explanation)}</div><div class="source-row"><strong>${escapeHtml(L.source)}</strong> ${escapeHtml(sourceLabel(q))}</div></div>`;
+}
+
+function setFilter(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+  if (btn) btn.classList.add("active");
+  applyFilter();
+}
+
+function applyFilter(quiz = quizDB[currentVariant] || []) {
+  quiz.forEach(q => {
+    const block = document.getElementById("q" + q.id);
+    if (!block) return;
+    let show = true;
+    if (currentFilter === "listening") show = q.section === "listening";
+    else if (currentFilter === "grammar") show = q.section === "grammar";
+    else if (currentFilter === "writing") show = q.section === "writing";
+    block.style.display = show ? "" : "none";
+  });
+}
+
+function updateFilterLabels(quiz = quizDB[currentVariant] || []) {
+  const L = I18N[currentLang];
+  document.getElementById("filterAll").textContent = `${L.filterAll} (${quiz.length})`;
+  document.getElementById("filterListening").textContent = `${L.filterListening} (${quiz.filter(q => q.section === "listening").length})`;
+  document.getElementById("filterGrammar").textContent = `${L.filterGrammar} (${quiz.filter(q => q.section === "grammar").length})`;
+  document.getElementById("filterWriting").textContent = `${L.filterWriting} (${quiz.filter(q => q.section === "writing").length})`;
+}
+
+function updateStats() {
+  const quiz = quizDB[currentVariant] || [];
+  const total = quiz.length;
+  let answered = 0, correct = 0;
+  quiz.forEach(q => { if (isQuestionAnswered(q)) answered++; if (isQuestionCorrect(q)) correct++; });
+  document.getElementById("answeredCount").textContent = answered + "/" + total;
+  document.getElementById("correctCount").textContent = correct;
+  const clDone = checklistItems.filter(i => checklistState[i.key]).length;
+  const clPct = Math.round((clDone / checklistItems.length) * 100);
+  document.getElementById("checklistProgress").textContent = clPct + "%";
+  document.getElementById("overall").value = Math.round((answered / total * 100 + clPct) / 2);
+}
+
+function updateSummary() {
+  const box = document.getElementById("summaryBox");
+  const L = I18N[currentLang];
+  const quiz = quizDB[currentVariant] || [];
+  const total = quiz.length;
+  let answered = 0, correct = 0, totalGraded = 0;
+
+  quiz.forEach(q => {
+    if (isQuestionAnswered(q)) {
+      answered++;
+      if (q.type !== "long") {
+        totalGraded++;
+        if (isQuestionCorrect(q)) correct++;
+      }
+    }
+  });
+
+  if (answered < total) {
+    const autoText = (L.summaryAuto || "").replace("{n}", totalGraded);
+    box.innerHTML = `<div class="summary">
+      <p style="margin:0;color:var(--muted);">${escapeHtml(L.summaryAnswered)} <strong>${answered}</strong> ${escapeHtml(L.summaryOf)} ${total}</p>
+      <p style="margin:8px 0 0;color:var(--muted);">${escapeHtml(L.summaryCorrect)} <strong>${correct}</strong> ${escapeHtml(autoText)}</p>
+      <p style="margin:8px 0 0;color:var(--muted);font-size:13px;">${escapeHtml(L.summaryFinish)}</p>
+    </div>`;
+    return;
+  }
+
+  const pct = totalGraded ? Math.round((correct / totalGraded) * 100) : 0;
+  const verdict = pct >= 85 ? L.verdictExcellent : pct >= 60 ? L.verdictGood : L.verdictNeeds;
+
+  box.innerHTML = `<div class="summary">
+    <div class="score">${correct}/${totalGraded}</div>
+    <p style="margin:8px 0;">${escapeHtml(verdict)}</p>
+    <p style="color:var(--muted);margin:0;">${escapeHtml(L.summaryCorrect)} ${pct}%</p>
+  </div>`;
+}
+
+/* ORAL */
+function renderOral() {
+  const container = document.getElementById("oralContainer");
+  const L = I18N[currentLang];
+  const tasks = oralDB[currentVariant] || [];
+  container.innerHTML = tasks.map(t => {
+    const max = t.max;
+    const key = currentVariant + "_oral_" + t.n;
+    const saved = oralState[key];
+    const scores = [];
+    for (let s = max; s >= 0; s--) scores.push(s);
+    const q1 = oralFieldOrDefault(t, "q1");
+    return `<article class="manual-card">
+      <span class="tag red">${escapeHtml(L.oralTag)}</span>
+      <h3>${escapeHtml(L.oralTaskPrefix)} №${t.n} (${escapeHtml(L.oralMax)} ${max})</h3>
+      <div class="q-part-label">${escapeHtml(L.oralQ1)}</div>
+      <div class="q-text">${escapeHtml(q1)}</div>
+      <div class="oral-self-check" data-ticket="${t.n}">
+        <span class="oral-score-label">${escapeHtml(L.oralSelfLabel)}</span>
+        ${scores.map(score => `<div class="oral-score-row"><input type="radio" name="oral-${t.n}" id="oral-${t.n}-${score}" value="${score}" ${saved && saved.score === score ? "checked" : ""} onchange="setOralScore(${t.n}, ${score})" /><label for="oral-${t.n}-${score}">${escapeHtml(L["oralScore" + score] || score + " б.")}</label></div>`).join("")}
+      </div>
+      <div class="oral-ticket-total" id="oral-total-${t.n}">${escapeHtml(L.oralTicketTotal)}: ${saved ? saved.score : 0} / ${max}</div>
+      <div class="check-input">
+        <label>${escapeHtml(L.oralPlaceholder)}</label>
+        <textarea data-oral="${t.n}" placeholder="${escapeHtml(L.oralPlaceholder)}" oninput="setOralNote(${t.n}, this.value)">${escapeHtml(saved && saved.note || "")}</textarea>
+      </div>
+      <div style="margin-top:10px;"><button class="btn small secondary" onclick="showOralModel(${t.n})">${escapeHtml(L.showSolution)}</button></div>
+      <div id="oralResult-${t.n}"></div>
+    </article>`;
+  }).join("");
+  updateOralSummary();
+}
+
+function setOralScore(n, score) {
+  const key = currentVariant + "_oral_" + n;
+  if (!oralState[key]) oralState[key] = { score: 0, note: "" };
+  oralState[key].score = score;
+  const tasks = oralDB[currentVariant] || [];
+  const t = tasks.find(x => x.n === n);
+  const box = document.getElementById("oral-total-" + n);
+  if (box && t) box.textContent = `${I18N[currentLang].oralTicketTotal}: ${score} / ${t.max}`;
+  updateOralSummary();
+}
+
+function setOralNote(n, val) {
+  const key = currentVariant + "_oral_" + n;
+  if (!oralState[key]) oralState[key] = { score: 0, note: "" };
+  oralState[key].note = val;
+}
+
+function updateOralSummary() {
+  const box = document.getElementById("oralSummaryBox");
+  if (!box) return;
+  const L = I18N[currentLang];
+  const tasks = oralDB[currentVariant] || [];
+  let total = 0, answered = 0;
+  tasks.forEach(t => {
+    const key = currentVariant + "_oral_" + t.n;
+    const s = oralState[key];
+    if (s) { total += s.score; if (s.score > 0 || s.note) answered++; }
+  });
+  const maxTotal = tasks.reduce((s, t) => s + t.max, 0);
+  const pct = maxTotal ? Math.round((total / maxTotal) * 100) : 0;
+  const verdict = pct >= 90 ? L.verdictExcellent : pct >= 60 ? L.verdictGood : L.verdictNeeds;
+  box.innerHTML = `<div class="oral-summary-box"><div class="score">${total} / ${maxTotal}</div><p style="margin:8px 0;">${escapeHtml(verdict)}</p><p style="color:var(--muted);margin:0;">${escapeHtml(L.oralSummaryProgress)}: ${answered} / ${tasks.length}</p><p style="color:var(--muted);margin:6px 0 0;font-size:12px;">${escapeHtml(L.oralScaleHint)}</p></div>`;
+}
+
+function showOralModel(n) {
+  const tasks = oralDB[currentVariant] || [];
+  const t = tasks.find(x => x.n === n);
+  if (!t) return;
+  const box = document.getElementById("oralResult-" + n);
+  const L = I18N[currentLang];
+  const explanation = oralFieldOrDefault(t, "explanation");
+  box.innerHTML = `<div class="result-block correct"><div class="verdict correct">📖 ${escapeHtml(L.explanation)}</div><div class="result-row" style="white-space:pre-wrap;">${escapeHtml(explanation)}</div></div>`;
+}
+
+/* STATS */
+function renderStats() {
+  const container = document.getElementById("statsContainer");
+  const L = I18N[currentLang];
+  let totalAnswered = 0, totalCorrect = 0, variantsPassed = 0;
+  const bySection = { listening: { ans: 0, cor: 0 }, grammar: { ans: 0, cor: 0 }, writing: { ans: 0, cor: 0 } };
+  const byVariant = {};
+
+  VARIANTS.forEach(v => {
+    const quiz = quizDB[v] || [];
+    let a = 0, c = 0;
+    quiz.forEach(q => {
+      const key = v + "_" + q.id;
+      const ans = savedAnswers[key];
+      let isAns = false, isCor = false;
+      if (q.type === "single") {
+        isAns = typeof ans === "string" && q.options.includes(ans);
+        isCor = isAns && ans === q.options[q.correct];
+      } else if (q.type === "match") {
+        isAns = typeof ans === "string" && ans.length > 0;
+        isCor = isAns && normalizeInput(ans) === normalizeInput(q.correctMatch);
+      } else if (q.type === "long") {
+        isAns = !!ans;
+        isCor = false;
+      }
+      if (isAns) {
+        a++;
+        totalAnswered++;
+        bySection[q.section].ans++;
+      }
+      if (isCor) {
+        c++;
+        totalCorrect++;
+        bySection[q.section].cor++;
+      }
+    });
+    byVariant[v] = { ans: a, cor: c, total: quiz.length };
+    if (a === quiz.length) variantsPassed++;
+  });
+
+  const accuracy = totalAnswered ? Math.round((totalCorrect / totalAnswered) * 100) : 0;
+
+  let html = `<div class="stats-grid">
+    <div class="stat-box"><div class="num">${totalAnswered}</div><div class="lbl">${escapeHtml(L.statTotalAnswered)}</div></div>
+    <div class="stat-box"><div class="num">${totalCorrect}</div><div class="lbl">${escapeHtml(L.statTotalCorrect)}</div></div>
+    <div class="stat-box"><div class="num">${accuracy}%</div><div class="lbl">${escapeHtml(L.statAccuracy)}</div></div>
+    <div class="stat-box"><div class="num">${variantsPassed} / ${VARIANTS.length}</div><div class="lbl">${escapeHtml(L.statVariants)}</div></div>
+  </div>`;
+
+  html += `<h3 style="margin-top:20px;font-size:16px;">${escapeHtml(L.statBySection)}</h3>`;
+  Object.keys(bySection).forEach(sec => {
+    const s = bySection[sec];
+    const pct = s.ans ? Math.round((s.cor / s.ans) * 100) : 0;
+    const label = sec === "listening" ? L.filterListening : sec === "grammar" ? L.filterGrammar : L.filterWriting;
+    html += `<div class="topic-stat">
+      <span class="topic-stat-label">${escapeHtml(label)}</span>
+      <div class="topic-stat-bar"><div class="topic-stat-fill" style="width:${pct}%"></div></div>
+      <span class="topic-stat-num">${s.cor}/${s.ans}</span>
+    </div>`;
+  });
+
+  html += `<h3 style="margin-top:20px;font-size:16px;">${escapeHtml(L.statByVariant)}</h3>`;
+  VARIANTS.forEach(v => {
+    const s = byVariant[v];
+    const pct = s.total ? Math.round((s.ans / s.total) * 100) : 0;
+    html += `<div class="topic-stat">
+      <span class="topic-stat-label">${escapeHtml(L.variantWord)} ${v}</span>
+      <div class="topic-stat-bar"><div class="topic-stat-fill" style="width:${pct}%"></div></div>
+      <span class="topic-stat-num">${s.ans}/${s.total}</span>
+    </div>`;
+  });
+
+  container.innerHTML = html;
+}
+
+/* ============================================================
+   MODE / VARIANT
+============================================================ */
+function setVariant(v) {
+  currentVariant = v;
+  renderVariantButtons(); renderQuestions(); renderOral(); renderStats();
+}
+
+function setMode(mode, btn) {
+  currentMode = mode;
+  document.querySelectorAll(".mode-btn").forEach(b => b.classList.remove("active"));
+  if (btn) btn.classList.add("active");
+  renderQuestions();
+}
+
+function resetVariant() {
+  const quiz = quizDB[currentVariant] || [];
+  if (!confirm(I18N[currentLang].resetConfirm)) return;
+  quiz.forEach(q => { delete savedAnswers[answerKey(q.id)]; });
+  const keys = Object.keys(oralState).filter(k => k.startsWith(currentVariant + "_oral_"));
+  keys.forEach(k => delete oralState[k]);
+  renderQuestions(); renderOral(); renderStats();
+}
+
+function resetAll() {
+  if (!confirm(I18N[currentLang].resetConfirm)) return;
+  savedAnswers = {}; oralState = {}; checklistState = {};
+  renderQuestions(); renderOral(); renderChecklist(); renderStats(); updateStats(); updateSummary(); updateOralSummary();
+}
+
+/* ============================================================
+   THEME / LANG / UI
+============================================================ */
+function applyTheme() {
+  document.documentElement.setAttribute("data-theme", currentTheme);
+  const icon = document.getElementById("themeIcon");
+  if (icon) icon.textContent = currentTheme === "dark" ? "🌙" : "☀️";
+}
+
+function toggleTheme() {
+  currentTheme = currentTheme === "dark" ? "light" : "dark";
+  applyTheme();
+}
+
+function applyUIText() {
+  const L = I18N[currentLang];
+  document.title = L.docTitle;
+  document.documentElement.lang = currentLang;
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.dataset.i18n;
+    if (L[key] != null) el.innerHTML = L[key];
+  });
+}
+
+function setLang(lang) {
+  if (!I18N[lang]) lang = "ru";
+  currentLang = lang;
+  document.querySelectorAll(".lang-option").forEach(sp => sp.classList.toggle("active", sp.dataset.lang === lang));
+  applyUIText();
+  renderAll();
+}
+
+/* TIMERS */
+let timerTotal = 45 * 60, timerRemaining = timerTotal, timerInterval = null, timerRunning = false;
+function formatTime(sec) { const h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = sec % 60; return [h, m, s].map(v => String(v).padStart(2, "0")).join(":"); }
+function updateTimerDisplay() { const display = document.getElementById("timerDisplay"); const widget = document.getElementById("timerWidget"); display.textContent = formatTime(timerRemaining); widget.classList.toggle("warning", timerRemaining <= 300 && timerRemaining > 60); widget.classList.toggle("danger", timerRemaining <= 60); }
+function updateTimerButton() { const btn = document.getElementById("timerToggle"); btn.textContent = timerRunning ? "⏸" : "▶"; }
+function stopTimer() { timerRunning = false; if (timerInterval) clearInterval(timerInterval); timerInterval = null; updateTimerButton(); }
+function startTimer() {
+  if (timerRunning || timerRemaining <= 0) return;
+  timerRunning = true;
+  timerInterval = setInterval(() => {
+    if (timerRemaining > 0) { timerRemaining--; updateTimerDisplay(); }
+    if (timerRemaining === 0) { stopTimer(); alert(I18N[currentLang].timerUp); }
+  }, 1000);
+  updateTimerButton();
+}
+function toggleTimer() { timerRunning ? stopTimer() : startTimer(); }
+function resetTimer() { stopTimer(); timerRemaining = timerTotal; updateTimerDisplay(); }
+
+let oralTimerTotal = 15 * 60, oralTimerRemaining = oralTimerTotal, oralTimerInterval = null, oralTimerRunning = false;
+function updateOralTimerDisplay() { const display = document.getElementById("oralTimerDisplay"); const widget = document.getElementById("oralTimerWidget"); if (!display) return; const m = Math.floor(oralTimerRemaining / 60), s = oralTimerRemaining % 60; display.textContent = `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`; widget.classList.toggle("warning", oralTimerRemaining <= 300 && oralTimerRemaining > 60); widget.classList.toggle("danger", oralTimerRemaining <= 60); }
+function updateOralTimerButton() { const btn = document.getElementById("oralTimerToggle"); if (btn) btn.textContent = oralTimerRunning ? "⏸" : "▶"; }
+function stopOralTimer() { oralTimerRunning = false; if (oralTimerInterval) clearInterval(oralTimerInterval); oralTimerInterval = null; updateOralTimerButton(); }
+function startOralTimer() {
+  if (oralTimerRunning || oralTimerRemaining <= 0) return;
+  oralTimerRunning = true;
+  oralTimerInterval = setInterval(() => {
+    if (oralTimerRemaining > 0) { oralTimerRemaining--; updateOralTimerDisplay(); }
+    if (oralTimerRemaining === 0) { stopOralTimer(); alert(I18N[currentLang].oralTimerUp); }
+  }, 1000);
+  updateOralTimerButton();
+}
+function toggleOralTimer() { oralTimerRunning ? stopOralTimer() : startOralTimer(); }
+function resetOralTimer() { stopOralTimer(); oralTimerRemaining = oralTimerTotal; updateOralTimerDisplay(); }
+
+/* EXPORT / COPY */
+function exportResults() {
+  const L = I18N[currentLang];
+  const quiz = quizDB[currentVariant] || [];
+  let total = 0, answered = 0, correct = 0;
+
+  quiz.forEach(q => {
+    if (isQuestionAnswered(q)) answered++;
+    if (isQuestionCorrect(q)) correct++;
+    total++;
+  });
+
+  let lines = [];
+  lines.push(L.exportTitle);
+  lines.push(`${L.exportDate}: ` + new Date().toLocaleString());
+  lines.push(`${L.exportVariant}: ` + currentVariant);
+  lines.push(`${L.exportMode}: ` + currentMode);
+  lines.push("");
+  lines.push(`${L.exportAnswers}: ` + answered + " / " + total);
+  lines.push(`${L.exportCorrect}: ` + correct);
+  lines.push("");
+  lines.push(L.exportAnswersHeader);
+
+  quiz.forEach(q => {
+    const a = getAnswer(q.id) || "—";
+    const ok = isQuestionCorrect(q) ? "✓" : (isQuestionAnswered(q) ? "✗" : "·");
+    lines.push(`[${ok}] ${L.exportTask} ${q.task}: ${a}`);
+  });
+
+  lines.push("");
+  lines.push(L.exportOralHeader);
+
+  const tasks = oralDB[currentVariant] || [];
+  tasks.forEach(t => {
+    const key = currentVariant + "_oral_" + t.n;
+    const s = oralState[key];
+    lines.push(`${L.exportTask} ${t.n}: ${s ? s.score + " / " + t.max : "— / " + t.max}`);
+  });
+
+  const blob = new Blob([lines.join("\n")], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `anti-ai-qwen-grade6-${currentVariant}-${currentLang}-${Date.now()}.txt`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  const status = document.getElementById("copyStatus");
+  if (status) {
+    status.textContent = L.exportDone;
+    setTimeout(() => status.textContent = "", 2500);
+  }
+}
+
+function copyPhone() {
+  const phone = "89202275676";
+  const status = document.getElementById("copyStatus");
+  const L = I18N[currentLang];
+  const show = () => { status.textContent = L.copied; setTimeout(() => status.textContent = "", 2500); };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(phone).then(show).catch(() => fallbackCopy(phone, show));
+  } else fallbackCopy(phone, show);
+}
+
+function fallbackCopy(text, cb) {
+  const t = document.createElement("textarea");
+  t.value = text; t.style.position = "fixed"; t.style.opacity = "0";
+  document.body.appendChild(t); t.focus(); t.select();
+  try { document.execCommand("copy"); cb(); } catch (e) { alert(I18N[currentLang].copyFail + text); }
+  document.body.removeChild(t);
+}
+
+/* INIT */
+function renderAll() {
+  renderStructureCards();
+  renderChecklist();
+  renderPlan();
+  renderReferences();
+  renderOralCriteria();
+  renderExamTips();
+  renderVariantButtons();
+  renderQuestions();
+  renderOral();
+  renderStats();
+  updateStats();
+  updateSummary();
+  updateOralSummary();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadState();
+  applyTheme();
+  applyUIText();
+  renderAll();
+  updateTimerDisplay();
+  updateOralTimerDisplay();
+
+  document.querySelectorAll(".mode-btn").forEach(b => b.classList.toggle("active", b.dataset.mode === currentMode));
+
+  document.getElementById("themeToggle").addEventListener("click", toggleTheme);
+
+  document.getElementById("langToggle").addEventListener("click", () => {
+    const order = ["ru", "uz", "en"];
+    const idx = order.indexOf(currentLang);
+    setLang(order[(idx + 1) % order.length]);
+  });
+
+  document.querySelectorAll("#langToggle .lang-option").forEach(sp => {
+    sp.addEventListener("click", (e) => {
+      e.stopPropagation();
+      setLang(sp.dataset.lang);
+    });
+  });
+
+  document.getElementById("timerToggle").addEventListener("click", toggleTimer);
+  document.getElementById("timerReset").addEventListener("click", resetTimer);
+  document.getElementById("oralTimerToggle").addEventListener("click", toggleOralTimer);
+  document.getElementById("oralTimerReset").addEventListener("click", resetOralTimer);
+
+  document.getElementById("checklistUl").addEventListener("change", e => {
+    if (e.target.matches("input[type='checkbox']")) {
+      const key = e.target.dataset.key;
+      checklistState[key] = e.target.checked;
+      const li = e.target.closest(".check-item");
+      if (li) li.classList.toggle("done", e.target.checked);
+      updateStats();
+    }
+  });
+});
+</script>
+</body>
+</html>
